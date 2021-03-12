@@ -1,0 +1,105 @@
+.courseContent {
+  margin-bottom: 10rem;
+
+  .completedRow {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    .goBackBtn {
+      width: 20px;
+      transform: rotateZ(180deg);
+      cursor: pointer;
+    }
+
+    .completed {
+      display: flex;
+      align-items: center;
+
+      .completed__icon {
+        width: 40px;
+        user-select: none;
+      }
+    }
+  }
+
+  .videoContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    background-color: $lightgrey;
+
+    .videoAside {
+      flex: 1;
+      box-shadow: 0 1px 10px lightgrey;
+
+      .header {
+        background-color: $darkgrey;
+        color: white;
+        padding: 0 1rem;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .modules {
+        overflow-y: scroll;
+        max-height: calc(360px - 70px);
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .module {
+          .module__title {
+            user-select: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 1rem .5rem;
+            background-color: darken($lightgrey, 10%);
+            border-bottom: solid 1px $darkgrey;
+          }
+
+          .module__videos {
+            list-style: none;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            row-gap: .5rem;
+            height: 0;
+            overflow: hidden;
+            transition: .3s all;
+
+            &.open {
+              height: fit-content;
+            }
+
+            .video {
+              cursor: pointer;
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: .5rem 2rem;
+              
+              &:hover {
+                .video__title {
+                  user-select: none;
+                  color: $orange;
+                }
+              }
+
+              .video__duration {
+                white-space: nowrap;
+                font-size: .8rem;
+                color: darken($lightgrey, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+export { default as Button } from "./resuable/Button"
+export { default as VideoPlayer } from "./resuable/VideoPlayer"
+
+export { default as Login } from "./routes/Login"
+export { default as Home } from "./routes/Home"
+export { default as Search } from "./routes/Search"
+export { default as Pricing } from "./routes/Pricing"
+export { default as Contact } from "./routes/Contact"
+export { default as Course } from "./routes/Course"
+
+export { default as HomeHero } from "./sections/HomeHero"
+export { default as HomeVideo } from "./sections/HomeVideo"
+export { default as HomeFeatures } from "./sections/HomeFeatures"
+export { default as SearchInput } from "./sections/SearchInput"
+export { default as SearchSorter } from "./sections/SearchSorter"
+export { default as SearchResults } from "./sections/SearchResults"
+export { default as CourseContent } from "./sections/CourseContent"
+export { default as CourseRessources } from "./sections/CourseRessources"
+export { default as CourseProfessor } from "./sections/CourseProfessor"
+
+export { default as Navbar } from "./common/Navbar"
+export { default as Footer } from "./common/Footer"
+export { default as VideoSection } from "./common/VideoSection"

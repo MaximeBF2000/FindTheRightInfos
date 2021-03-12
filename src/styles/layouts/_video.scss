@@ -1,0 +1,14 @@
+.videoSection {
+  @extend .align_v;
+  padding: 5rem 2rem;
+  margin-bottom: 10rem;
+  background-color: $lightgrey;
+
+  .title {
+    margin-bottom: 3.5rem;
+    font-size: 1.9rem;
+    font-weight: 900;
+    word-spacing: 5px;
+    color: darken($darkgrey, 10%);
+  }
+}

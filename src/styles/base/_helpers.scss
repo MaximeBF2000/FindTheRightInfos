@@ -1,0 +1,33 @@
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.align_h {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.align_v {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
+}
+
+.sizeContainer {
+  width: $sizeContainerSize;
+  margin: 0 auto;
+}
+
+.relativeContainer {
+  position: relative;
+}

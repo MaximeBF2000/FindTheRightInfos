@@ -1,0 +1,28 @@
+.footer {
+  background-color: $darkgrey;
+  color: white;
+  padding: 5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .newsletter {
+    .title {
+      font-size: 1.5rem;
+      margin-bottom: 1.3rem;
+    }
+    .input {
+      width: 100%;
+      padding: .8rem .5rem;
+      padding-right: 7rem;
+      border: none;
+      border-radius: $b_radius_1;
+    }
+    .subscribeBtn {
+      position: absolute;
+      top: 50%;
+      right: 0.5rem;
+      transform: translateY(-50%);
+    }
+  }
+}

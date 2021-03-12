@@ -1,0 +1,36 @@
+.homeFeatures {
+  @extend .sizeContainer;
+
+  .feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10rem;
+    column-gap: 2rem;
+
+    .feature__text {
+      .title {
+        font-weight: 900;
+        color: darken($darkgrey, 10%);
+        margin-bottom: 1.2rem;
+        font-size: 1.8rem;
+      }
+
+      .description {
+        color: lighten($darkgrey, 10%);
+        // color: red;
+      }
+    }
+
+    .feature__img {
+      width: 450px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+    }
+  }
+}

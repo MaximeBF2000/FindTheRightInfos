@@ -1,0 +1,30 @@
+import React from "react"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import { Navbar, Login, Home, Search, Pricing, Contact, Footer, Course } from "./components"
+import { AnimatePresence } from "framer-motion"
+import { useSelector } from "react-redux"
+
+function App() {
+  const user = useSelector(state => state.user)
+
+	return (
+		<BrowserRouter>
+      <Navbar />
+      <AnimatePresence>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+
+          <Route exact path="/" component={Home} />
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/pricing" component={Pricing} />
+          <Route exact path="/contact" component={Contact} />
+
+          <Route exact path="/course/:courseId" component={Course} />
+        </Switch>
+      </AnimatePresence>
+      <Footer />
+		</BrowserRouter>
+	)
+}
+
+export default App

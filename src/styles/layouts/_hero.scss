@@ -1,0 +1,42 @@
+.home {
+	.homeIntro {
+		height: 80vh;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100vh;
+
+		.col {
+			width: 50%;
+			@extend .center;
+
+			&.text {
+				padding: 3rem;
+
+				.title {
+					font-weight: 900;
+					color: darken($darkgrey, 10%);
+					font-size: 2.5rem;
+					margin-bottom: 2rem;
+				}
+
+				.description {
+					color: lighten($darkgrey, 10%);
+					font-size: 1.1rem;
+					line-height: 1.6;
+					margin-bottom: 3.5rem;
+				}
+
+				.cta {
+					align-self: flex-start;
+				}
+			}
+
+			&.image {
+				.img {
+					width: 450px;
+				}
+			}
+		}
+	}
+}

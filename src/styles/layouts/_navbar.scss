@@ -1,0 +1,53 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+
+  .logo {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .nav_links {
+    display: flex;
+    column-gap: 1rem;
+
+    .nav_link {
+      position: relative;
+      color: $darkgrey;
+      font-weight: bold;
+      padding: .3rem 0;
+      user-select: none;
+  
+      &::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: $orange;
+        transition: .3s all;
+      }
+  
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+
+      &.loginBtn {
+        color: white;
+        background: $orange;
+        padding: .3rem .8rem;
+        border-radius: $b_radius_1;
+
+        &::before {
+          content: unset;
+        }
+      }
+    }
+  }
+}
