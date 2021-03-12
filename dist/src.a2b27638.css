@@ -1,39 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap");
-.center, .searchPage, .home .homeIntro .col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.align_h {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.align_v, .videoSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.button {
-  cursor: pointer;
-  user-select: none;
-  width: fit-content;
-}
-
-.sizeContainer, .homeFeatures {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.relativeContainer {
-  position: relative;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -72,6 +38,40 @@ img {
 
 button, input {
   outline: none;
+}
+
+.center, .searchPage, .home .homeIntro .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.align_h {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.align_v, .videoSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sizeContainer, .homeFeatures {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.relativeContainer {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+  user-select: none;
+  width: fit-content;
 }
 
 .navbar {
@@ -117,6 +117,32 @@ button, input {
 }
 .navbar .nav_links .nav_link.loginBtn::before {
   content: unset;
+}
+
+.footer {
+  background-color: #333333;
+  color: white;
+  padding: 5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer .newsletter .title {
+  font-size: 1.5rem;
+  margin-bottom: 1.3rem;
+}
+.footer .newsletter .input {
+  width: 100%;
+  padding: 0.8rem 0.5rem;
+  padding-right: 7rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+.footer .newsletter .subscribeBtn {
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
 }
 
 .home .homeIntro {
@@ -283,32 +309,6 @@ button, input {
 .searchPage .searchResults__container .searchResult .playModules img {
   width: 20px;
   fill: #ff5733;
-}
-
-.footer {
-  background-color: #333333;
-  color: white;
-  padding: 5rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.footer .newsletter .title {
-  font-size: 1.5rem;
-  margin-bottom: 1.3rem;
-}
-.footer .newsletter .input {
-  width: 100%;
-  padding: 0.8rem 0.5rem;
-  padding-right: 7rem;
-  border: none;
-  border-radius: 0.25rem;
-}
-.footer .newsletter .subscribeBtn {
-  position: absolute;
-  top: 50%;
-  right: 0.5rem;
-  transform: translateY(-50%);
 }
 
 .courseContent {

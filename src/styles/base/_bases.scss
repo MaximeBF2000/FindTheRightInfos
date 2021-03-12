@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+  transition: .3s all;
+}
+
+body {
+  background-color: #F9F9F9;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: white;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba($darkgrey, .7);
+}
+
+::selection {
+  background-color: $orange;
+  color: white;
+}
+
+a, button {
+  all: unset;
+  cursor: pointer;
+  color: inherit;
+}
+
+img {
+  user-select: none;
+}
+
+button, input {
+  outline: none;
+}
