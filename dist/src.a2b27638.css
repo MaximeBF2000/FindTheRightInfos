@@ -12,6 +12,10 @@ body {
   background-color: #F9F9F9;
 }
 
+html, body, #root {
+  width: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   background: white;
@@ -40,7 +44,7 @@ button, input {
   outline: none;
 }
 
-.center, .searchPage, .home .homeIntro .col, .navbar .nav__mobileOpen {
+.center, .login__image, .searchPage, .home .homeIntro .col, .navbar .nav__mobileOpen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -72,6 +76,42 @@ button, input {
   cursor: pointer;
   user-select: none;
   width: fit-content;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form__title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+.form__inputField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form__inputField--label {
+  margin-bottom: 0.5rem;
+}
+.form__inputField--input {
+  width: 100%;
+  outline: none;
+  border: solid 1px #333333;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: inherit;
+}
+.form__submitBtn {
+  width: fit-content;
+  margin-top: 2rem;
+  background-color: #ff5733;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.25em;
 }
 
 .coursesGrid {
@@ -129,6 +169,14 @@ button, input {
   width: 20px;
   fill: #ff5733;
 }
+@media (max-width: 500px) {
+  .courseItem {
+    flex-direction: column;
+  }
+  .courseItem .course__img {
+    width: 200px;
+  }
+}
 
 .navbar {
   width: 100%;
@@ -154,15 +202,15 @@ button, input {
     left: 0;
     right: 0;
     padding: 2rem;
-    padding-top: 5rem;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
+    align-items: flex-start;
+    row-gap: 1.5rem;
     clip-path: circle(0 at 100% 0);
   }
   .navbar .nav_links.open {
-    clip-path: circle(500px at 100% 0);
+    clip-path: circle(1000px at 100% 0);
   }
 }
 .navbar .nav_links .nav__mobileClose {
@@ -199,6 +247,7 @@ button, input {
   width: 100%;
 }
 .navbar .nav_links .nav_link.loginBtn {
+  display: inline-block;
   color: white;
   background: #ff5733;
   padding: 0.3rem 0.8rem;
@@ -368,6 +417,9 @@ button, input {
   transform: translateY(-50%);
 }
 
+.searchPage {
+  width: 100%;
+}
 .searchPage.emptySearch {
   min-height: 60vh;
 }
@@ -387,6 +439,12 @@ button, input {
   box-shadow: -1px 1px 20px #DEDEDE;
   color: #333333;
 }
+@media (max-width: 700px) {
+  .searchPage .search__container .search__input {
+    min-width: unset;
+    width: 100%;
+  }
+}
 .searchPage .search__container .search__input::placeholder {
   color: #DEDEDE;
 }
@@ -401,6 +459,14 @@ button, input {
 }
 .searchPage .searchSort__container .sorter span {
   margin-right: 1.5rem;
+}
+@media (max-width: 500px) {
+  .searchPage .searchSort__container .sorter {
+    text-align: right;
+  }
+  .searchPage .searchSort__container .sorter span {
+    margin-right: 0;
+  }
 }
 .searchPage .searchSort__container .sorter select {
   cursor: pointer;
@@ -437,6 +503,11 @@ button, input {
 .courseContent .completedRow .completed .completed__icon {
   width: 40px;
   user-select: none;
+}
+@media (max-width: 500px) {
+  .courseContent .completedRow {
+    font-size: 0.8rem;
+  }
 }
 .courseContent .videoContainer {
   display: flex;
@@ -502,6 +573,14 @@ button, input {
   font-size: 0.8rem;
   color: #c5c5c5;
 }
+@media (max-width: 850px) {
+  .courseContent .videoContainer {
+    flex-direction: column;
+  }
+  .courseContent .videoContainer .videoPlayer {
+    width: 100% !important;
+  }
+}
 
 .courseProfessor {
   margin-bottom: 10rem;
@@ -531,6 +610,15 @@ button, input {
   font-size: 0.9rem;
   margin-bottom: 2.5rem;
   line-height: 1.8;
+}
+@media (max-width: 700px) {
+  .courseProfessor .row {
+    flex-direction: column;
+    row-gap: 4rem;
+  }
+  .courseProfessor .row .content {
+    max-width: unset;
+  }
 }
 
 .courseTitle {
@@ -575,6 +663,75 @@ button, input {
 .courseRessources .ressources .ressource .ressource__row .ressource__download {
   width: 20px;
   cursor: pointer;
+}
+
+.login {
+  min-height: 100vh;
+  display: flex;
+}
+@media (max-width: 700px) {
+  .login {
+    flex-direction: column-reverse;
+  }
+}
+.login .box {
+  position: relative;
+  min-width: 500px;
+  height: 100vh;
+  box-shadow: 0 2px 12px lightgrey;
+  padding: 4rem 3rem;
+  background-color: #fff;
+  position: relative;
+}
+.login .box .logo {
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+@media (max-width: 700px) {
+  .login .box .logo {
+    display: none;
+  }
+}
+.login .box .switchForm {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+}
+.login .box .switchForm span {
+  color: #ff5733;
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  .login .box {
+    min-width: unset;
+    width: 100%;
+    height: auto;
+  }
+}
+.login__image {
+  flex: 1;
+  row-gap: 2rem;
+  padding: 2rem;
+}
+.login__image > img {
+  width: 60%;
+}
+.login__image--title {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  font-weight: 900;
+}
+@media (max-width: 850px) {
+  .login__image--title {
+    font-size: 1.3rem;
+  }
 }
 
 /*# sourceMappingURL=/src.a2b27638.css.map */

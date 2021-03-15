@@ -60,4 +60,12 @@
 			fill: $orange;
 		}
 	}
+
+  @include mediaquery(max-width, extrasmall) {
+    flex-direction: column;
+
+    .course__img {
+      width: 200px;
+    }
+  }
 }

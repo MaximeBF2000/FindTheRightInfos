@@ -1,11 +1,38 @@
 import React from 'react'
 import { CourseItem } from "../index"
+import { motion } from "framer-motion"
 
 function SearchResults() {
+  const MotionCourseItem = motion(CourseItem)
+
+  const motion_containerVariant = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const motion_itemVariant = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  }
+
+
   return (
-    <div className="coursesGrid">
+    <motion.div 
+      className="coursesGrid"
+      variants={motion_containerVariant}
+      initial="hidden"
+      animate="show"
+    >
       {Array(5).fill("").map((_, i) => (
-        <CourseItem
+        <MotionCourseItem
+          variants={motion_itemVariant}
+          initial="hidden"
+          animate="show"
           course={{
             title: "Course title",
             author: "Author name",
@@ -15,7 +42,7 @@ function SearchResults() {
           key={i}
         />
       ))}
-    </div>
+    </motion.div>
   )
 }
 

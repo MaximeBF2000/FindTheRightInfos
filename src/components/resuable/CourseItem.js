@@ -1,12 +1,12 @@
-import React from "react"
+import React, { forwardRef } from "react"
 import imageFrame from "../../assets/image.svg"
 import playIcon from "../../assets/playbutton.svg"
 import { Link } from "react-router-dom"
 import { truncate } from "../../utils/functions"
 
-function CourseItem({ course }) {
+const CourseItem = forwardRef(({ course }, ref) => {
 	return (
-		<Link to={`/course/${"courseId"}`}>
+		<Link to={`/course/${"courseId"}`} ref={ref}>
 			<div className="courseItem">
 				<div className="course__img">
 					<img src={imageFrame} alt="" />
@@ -23,6 +23,6 @@ function CourseItem({ course }) {
 			</div>
 		</Link>
 	)
-}
+})
 
 export default CourseItem

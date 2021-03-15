@@ -9,20 +9,22 @@ function App() {
 
 	return (
 		<BrowserRouter>
-      <Navbar />
-      <AnimatePresence>
-        <Switch>
-          <Route exact path="/login" component={Login} />
-
-          <Route exact path="/" component={Home} />
-          <Route exact path="/search" component={Search} />
-          <Route exact path="/pricing" component={Pricing} />
-          <Route exact path="/contact" component={Contact} />
-
-          <Route exact path="/course/:courseId" component={Course} />
-        </Switch>
-      </AnimatePresence>
-      <Footer />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route path="*">
+          <Navbar />
+          <AnimatePresence>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/search" component={Search} />
+              <Route exact path="/pricing" component={Pricing} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/course/:courseId" component={Course} />
+            </Switch>
+          </AnimatePresence>
+          <Footer />
+        </Route>
+      </Switch>
 		</BrowserRouter>
 	)
 }

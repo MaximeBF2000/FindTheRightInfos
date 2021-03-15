@@ -23,6 +23,10 @@
         user-select: none;
       }
     }
+
+    @include mediaquery(max-width, extrasmall) {
+      font-size: .8rem;
+    }
   }
 
   .videoContainer {
@@ -99,6 +103,14 @@
             }
           }
         }
+      }
+    }
+
+    @include mediaquery(max-width, medium) {
+      flex-direction: column;
+
+      .videoPlayer {
+        width: 100% !important;
       }
     }
   }

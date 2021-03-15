@@ -1,5 +1,6 @@
 .searchPage {
   @extend .center;
+  width: 100%;
 
   &.emptySearch {
     min-height: 60vh;
@@ -21,6 +22,11 @@
       box-shadow: -1px 1px 20px $lightgrey;
       color: $darkgrey;
 
+      @include mediaquery(max-width, small) {
+        min-width: unset;
+        width: 100%;
+      }
+
       &::placeholder {
         color: $lightgrey;
       }
@@ -41,6 +47,14 @@
 
       span {
         margin-right: 1.5rem;
+      }
+
+      @include mediaquery(max-width, extrasmall) {
+        text-align: right;
+        
+        span {
+          margin-right: 0;
+        }
       }
 
       select {

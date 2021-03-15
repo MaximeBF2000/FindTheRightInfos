@@ -33980,6 +33980,66 @@ function Button(_ref) {
 
 var _default = Button;
 exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/resuable/Form.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Form;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Form(_ref) {
+  var title = _ref.title,
+      onSubmit = _ref.onSubmit,
+      className = _ref.className,
+      width = _ref.width,
+      children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement("form", {
+    onSubmit: onSubmit,
+    className: "form ".concat(className),
+    style: {
+      width: width && width
+    }
+  }, title && /*#__PURE__*/_react.default.createElement("div", {
+    className: "form__title"
+  }, title), children);
+}
+
+Form.Input = function (_ref2) {
+  var id = _ref2.id,
+      type = _ref2.type,
+      label = _ref2.label,
+      value = _ref2.value,
+      setValue = _ref2.setValue,
+      className = _ref2.className;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "form__inputField ".concat(className === null || className === void 0 ? void 0 : className.container)
+  }, label && /*#__PURE__*/_react.default.createElement("label", {
+    htmlFor: id,
+    className: "form__inputField--label ".concat(className === null || className === void 0 ? void 0 : className.label)
+  }, label), /*#__PURE__*/_react.default.createElement("input", {
+    id: id,
+    type: type || "text",
+    value: value,
+    onChange: function onChange(e) {
+      return setValue(e.target.value);
+    },
+    className: "form__inputField--input ".concat(className === null || className === void 0 ? void 0 : className.input)
+  }));
+};
+
+Form.SubmitButton = function (_ref3) {
+  var className = _ref3.className,
+      children = _ref3.children;
+  return /*#__PURE__*/_react.default.createElement("button", {
+    type: "submit",
+    className: "form__submitBtn ".concat(className)
+  }, children);
+};
 },{"react":"node_modules/react/index.js"}],"node_modules/load-script/index.js":[function(require,module,exports) {
 
 module.exports = function load (src, opts, cb) {
@@ -39136,7 +39196,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _image = _interopRequireDefault(require("../../assets/image.svg"));
 
@@ -39148,12 +39208,17 @@ var _functions = require("../../utils/functions");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function CourseItem(_ref) {
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var CourseItem = (0, _react.forwardRef)(function (_ref, ref) {
   var _course$modules;
 
   var course = _ref.course;
   return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/course/".concat("courseId")
+    to: "/course/".concat("courseId"),
+    ref: ref
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "courseItem"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -39175,11 +39240,52 @@ function CourseItem(_ref) {
     src: _playbutton.default,
     alt: "play icon"
   }))));
-}
-
+});
 var _default = CourseItem;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../../assets/image.svg":"src/assets/image.svg","../../assets/playbutton.svg":"src/assets/playbutton.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../utils/functions":"src/utils/functions.js"}],"src/components/routes/Login.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../../assets/image.svg":"src/assets/image.svg","../../assets/playbutton.svg":"src/assets/playbutton.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../utils/functions":"src/utils/functions.js"}],"src/utils/hooks.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useToggle = void 0;
+
+var _react = require("react");
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var useToggle = function useToggle() {
+  var initialValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+  var _useState = (0, _react.useState)(initialValue),
+      _useState2 = _slicedToArray(_useState, 2),
+      value = _useState2[0],
+      setValue = _useState2[1];
+
+  var toggle = function toggle() {
+    return setValue(function (ps) {
+      return !ps;
+    });
+  };
+
+  return [value, toggle];
+};
+
+exports.useToggle = useToggle;
+},{"react":"node_modules/react/index.js"}],"src/assets/login_img.svg":[function(require,module,exports) {
+module.exports = "/login_img.ee34dabe.svg";
+},{}],"src/components/routes/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39187,19 +39293,113 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+var _index = require("../index");
+
+var _hooks = require("../../utils/hooks");
+
+var _login_img = _interopRequireDefault(require("../../assets/login_img.svg"));
+
+var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function Login() {
+  var history = (0, _reactRouterDom.useHistory)();
+
+  var _useToggle = (0, _hooks.useToggle)(false),
+      _useToggle2 = _slicedToArray(_useToggle, 2),
+      isSignin = _useToggle2[0],
+      toggleSignin = _useToggle2[1];
+
+  var _useState = (0, _react.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1];
+
+  var _useState3 = (0, _react.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      email = _useState4[0],
+      setEmail = _useState4[1];
+
+  var _useState5 = (0, _react.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      password = _useState6[0],
+      setPassword = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      repeatPassword = _useState8[0],
+      setRepeatPassword = _useState8[1];
+
+  var login = function login() {};
+
+  var register = function register() {};
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "login"
-  }, "login");
+  }, /*#__PURE__*/_react.default.createElement(_index.Form, {
+    onSubmit: isSignin ? register : login,
+    className: "box",
+    title: "FindTheRightInfos - ".concat(isSignin ? "Register" : "Login")
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "logo",
+    onClick: function onClick() {
+      return history.push("/");
+    }
+  }, "FTRI"), isSignin && /*#__PURE__*/_react.default.createElement(_index.Form.Input, {
+    label: "Name",
+    value: name,
+    setValue: setName
+  }), /*#__PURE__*/_react.default.createElement(_index.Form.Input, {
+    label: "Email",
+    type: "email",
+    value: email,
+    setValue: setEmail
+  }), /*#__PURE__*/_react.default.createElement(_index.Form.Input, {
+    label: "Password",
+    type: "password",
+    value: password,
+    setValue: setPassword
+  }), isSignin && /*#__PURE__*/_react.default.createElement(_index.Form.Input, {
+    label: "Repeat password",
+    type: "password",
+    value: repeatPassword,
+    setValue: setRepeatPassword
+  }), /*#__PURE__*/_react.default.createElement(_index.Form.SubmitButton, null, isSignin ? "Register" : "Login"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "switchForm"
+  }, isSignin ? "Already a member" : "Don't have an account yet", " ?", " ", /*#__PURE__*/_react.default.createElement("span", {
+    onClick: toggleSignin
+  }, isSignin ? "Login" : "Register", " here"))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "login__image"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _login_img.default,
+    alt: "Woman on desk studying with computer and notes"
+  }), /*#__PURE__*/_react.default.createElement("h1", {
+    className: "login__image--title"
+  }, "Learning is important, use the correct tools")));
 }
 
 var _default = Login;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/components/routes/Home.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js","../../utils/hooks":"src/utils/hooks.js","../../assets/login_img.svg":"src/assets/login_img.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/routes/Home.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39255,12 +39455,15 @@ function Search() {
       searchQuery = _useState2[0],
       setSearchQuery = _useState2[1];
 
+  var searchQueryIsEmpty = (0, _react.useMemo)(function () {
+    return searchQuery.length === 0;
+  }, [searchQuery]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "searchPage ".concat(!searchQuery && "emptySearch")
   }, /*#__PURE__*/_react.default.createElement(_index.SearchInput, {
     searchQuery: searchQuery,
     setSearchQuery: setSearchQuery
-  }), searchQuery && /*#__PURE__*/_react.default.createElement("div", {
+  }), !searchQueryIsEmpty && /*#__PURE__*/_react.default.createElement("div", {
     className: "sizeContainer"
   }, /*#__PURE__*/_react.default.createElement(_index.SearchSorter, null), /*#__PURE__*/_react.default.createElement(_index.SearchResults, null)));
 }
@@ -39554,664 +39757,7 @@ function SearchSorter() {
 
 var _default = SearchSorter;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/components/sections/SearchResults.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _index = require("../index");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function SearchResults() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "coursesGrid"
-  }, Array(5).fill("").map(function (_, i) {
-    return /*#__PURE__*/_react.default.createElement(_index.CourseItem, {
-      course: {
-        title: "Course title",
-        author: "Author name",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
-        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
-      },
-      key: i
-    });
-  }));
-}
-
-var _default = SearchResults;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/assets/arrow_icon.svg":[function(require,module,exports) {
-module.exports = "/arrow_icon.d1389ef9.svg";
-},{}],"src/assets/trophy_icon.svg":[function(require,module,exports) {
-module.exports = "/trophy_icon.803eb5ab.svg";
-},{}],"src/components/sections/CourseContent.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _index = require("../index");
-
-var _arrow_icon = _interopRequireDefault(require("../../assets/arrow_icon.svg"));
-
-var _trophy_icon = _interopRequireDefault(require("../../assets/trophy_icon.svg"));
-
-var _reactRouterDom = require("react-router-dom");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var VideoModule = function VideoModule(_ref) {
-  var title = _ref.title,
-      videos = _ref.videos,
-      _ref$open = _ref.open,
-      open = _ref$open === void 0 ? false : _ref$open;
-
-  var _useState = (0, _react.useState)(open),
-      _useState2 = _slicedToArray(_useState, 2),
-      _open = _useState2[0],
-      setOpen = _useState2[1];
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "module"
-  }, /*#__PURE__*/_react.default.createElement("h5", {
-    className: "module__title",
-    onClick: function onClick(_) {
-      return setOpen(function (ps) {
-        return !ps;
-      });
-    }
-  }, title), /*#__PURE__*/_react.default.createElement("ul", {
-    className: "module__videos ".concat(_open && "open")
-  }, videos === null || videos === void 0 ? void 0 : videos.map(function (video, i) {
-    return /*#__PURE__*/_react.default.createElement("li", {
-      className: "video",
-      key: i
-    }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "video__title"
-    }, video === null || video === void 0 ? void 0 : video.title), /*#__PURE__*/_react.default.createElement("div", {
-      className: "video__duration"
-    }, video === null || video === void 0 ? void 0 : video.duration));
-  })));
-};
-
-function CourseContent() {
-  var history = (0, _reactRouterDom.useHistory)();
-
-  var goBack = function goBack() {
-    return history.goBack();
-  };
-
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "sizeContainer courseContent"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "completedRow"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "goBackBtn",
-    src: _arrow_icon.default,
-    alt: "go back button (arrow left)",
-    onClick: goBack
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "completed"
-  }, /*#__PURE__*/_react.default.createElement("span", {
-    className: "completed__text"
-  }, "You have completed 21% of the course"), /*#__PURE__*/_react.default.createElement("img", {
-    className: "completed__icon",
-    src: _trophy_icon.default,
-    alt: "trophy image"
-  }))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "videoContainer"
-  }, /*#__PURE__*/_react.default.createElement(_index.VideoPlayer, {
-    url: "https://youtu.be/BVEQh4QRpxU"
-  }), /*#__PURE__*/_react.default.createElement("aside", {
-    className: "videoAside"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "header"
-  }, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "course__title"
-  }, "Course Title"), /*#__PURE__*/_react.default.createElement("small", {
-    className: "courseAuthor"
-  }, "by Author name")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "modules"
-  }, /*#__PURE__*/_react.default.createElement(VideoModule, {
-    open: true,
-    title: "Module 1",
-    videos: [{
-      title: "Video 1",
-      duration: "2min 27"
-    }, {
-      title: "Video 2",
-      duration: "2min 27"
-    }, {
-      title: "Video 3",
-      duration: "2min 27"
-    }]
-  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
-    title: "Module 2",
-    videos: [{
-      title: "Video 1",
-      duration: "2min 27"
-    }, {
-      title: "Video 2",
-      duration: "2min 27"
-    }, {
-      title: "Video 3",
-      duration: "2min 27"
-    }]
-  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
-    title: "Module 3",
-    videos: [{
-      title: "Video 1",
-      duration: "2min 27"
-    }, {
-      title: "Video 2",
-      duration: "2min 27"
-    }, {
-      title: "Video 3",
-      duration: "2min 27"
-    }]
-  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
-    title: "Module 4",
-    npm: true,
-    videos: [{
-      title: "Video 1",
-      duration: "2min 27"
-    }, {
-      title: "Video 2",
-      duration: "2min 27"
-    }, {
-      title: "Video 3",
-      duration: "2min 27"
-    }]
-  })))));
-}
-
-var _default = CourseContent;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js","../../assets/arrow_icon.svg":"src/assets/arrow_icon.svg","../../assets/trophy_icon.svg":"src/assets/trophy_icon.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/assets/download_icon.svg":[function(require,module,exports) {
-module.exports = "/download_icon.8b6f4810.svg";
-},{}],"src/components/sections/CourseRessources.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _download_icon = _interopRequireDefault(require("../../assets/download_icon.svg"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function CourseRessources() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "sizeContainer courseRessources"
-  }, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "courseTitle"
-  }, "RESSOURCES"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "courseSubtitle"
-  }, "Find all the ressources of the course here, exercice files, demo files, assets..."), /*#__PURE__*/_react.default.createElement("ul", {
-    className: "ressources"
-  }, /*#__PURE__*/_react.default.createElement("li", {
-    className: "ressource"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__filename"
-  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__row"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__fileweight"
-  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
-    className: "ressource__download",
-    src: _download_icon.default,
-    alt: "Download button"
-  }))), /*#__PURE__*/_react.default.createElement("li", {
-    className: "ressource"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__filename"
-  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__row"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__fileweight"
-  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
-    className: "ressource__download",
-    src: _download_icon.default,
-    alt: "Download button"
-  }))), /*#__PURE__*/_react.default.createElement("li", {
-    className: "ressource"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__filename"
-  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__row"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "ressource__fileweight"
-  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
-    className: "ressource__download",
-    src: _download_icon.default,
-    alt: "Download button"
-  })))));
-}
-
-var _default = CourseRessources;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../../assets/download_icon.svg":"src/assets/download_icon.svg"}],"src/components/sections/CourseProfessor.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _index = require("../index");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function CourseProfessor() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "sizeContainer courseProfessor"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "courseTitle"
-  }, "YOUR PROFESSOR"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "row"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "photo",
-    src: "https://via.placeholder.com/1000",
-    alt: ""
-  }), /*#__PURE__*/_react.default.createElement("div", {
-    className: "content"
-  }, /*#__PURE__*/_react.default.createElement("h3", {
-    className: "name"
-  }, "PROFESSOR NAME"), /*#__PURE__*/_react.default.createElement("p", {
-    className: "description"
-  }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, perspiciatis eos. Voluptatibus maxime at cum recusandae, quo dolor provident nostrum quam odit beatae totam, commodi nesciunt laudantium et sapiente? Dolorem architecto commodi sunt. Magni illo veniam hic incidunt. Dignissimos amet deleniti culpa pariatur itaque! Temporibus ipsum est sunt veritatis amet sequi sapiente corrupti deleniti qui cum non, fuga exercitationem autem corporis esse quod reprehenderit et! Ad soluta ab natus aspernatur voluptates. Tempora libero quidem voluptatem."), /*#__PURE__*/_react.default.createElement(_index.Button, {
-    className: "cta",
-    rounded: true
-  }, "Ask me a question"))));
-}
-
-var _default = CourseProfessor;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/sections/CourseCrossSell.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _index = require("../index");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function CourseCrossSell() {
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "sizeContainer courseCrossSell"
-  }, /*#__PURE__*/_react.default.createElement("h2", {
-    className: "courseTitle"
-  }, "More courses like this one"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "coursesGrid"
-  }, Array(4).fill().map(function (_, i) {
-    return /*#__PURE__*/_react.default.createElement(_index.CourseItem, {
-      course: {
-        title: "Course title",
-        author: "Author name",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
-        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
-      },
-      key: i
-    });
-  })));
-}
-
-var _default = CourseCrossSell;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/Navbar.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _reactRouterDom = require("react-router-dom");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function Navbar() {
-  var _useState = (0, _react.useState)(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      mobileOpen = _useState2[0],
-      setMobileOpen = _useState2[1];
-
-  return /*#__PURE__*/_react.default.createElement("header", {
-    className: "navbar"
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "logo"
-  }, /*#__PURE__*/_react.default.createElement("h1", null, "FTRI"))), /*#__PURE__*/_react.default.createElement("nav", {
-    className: "nav_links ".concat(mobileOpen && "open")
-  }, /*#__PURE__*/_react.default.createElement("button", {
-    className: "nav__mobileClose",
-    onClick: function onClick() {
-      return setMobileOpen(false);
-    }
-  }, "\xD7"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav_link"
-  }, "Home")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/pricing"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav_link"
-  }, "Pricing")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/contact"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav_link"
-  }, "Contact us")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-    to: "/login"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav_link loginBtn"
-  }, "Login"))), /*#__PURE__*/_react.default.createElement("button", {
-    className: "nav__mobileOpen",
-    onClick: function onClick() {
-      return setMobileOpen(true);
-    }
-  }, "\u2261"));
-}
-
-var _default = Navbar;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/common/Footer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _index = require("../index");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Footer() {
-  return /*#__PURE__*/_react.default.createElement("footer", {
-    className: "footer"
-  }, /*#__PURE__*/_react.default.createElement("div", null, "footer"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "newsletter"
-  }, /*#__PURE__*/_react.default.createElement("h4", {
-    className: "title"
-  }, "Subscribe to our newsletter !"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "relativeContainer"
-  }, /*#__PURE__*/_react.default.createElement("input", {
-    type: "text",
-    className: "input",
-    placeholder: "Your email here..."
-  }), /*#__PURE__*/_react.default.createElement(_index.Button, {
-    rounded: true,
-    small: true,
-    className: "subscribeBtn"
-  }, "Subscribe"))));
-}
-
-var _default = Footer;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/VideoSection.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-var _components = require("../../components");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function VideoSection() {
-  return /*#__PURE__*/_react.default.createElement("section", {
-    className: "videoSection"
-  }, /*#__PURE__*/_react.default.createElement(_components.VideoPlayer, {
-    url: "https://www.youtube.com/watch?v=BVEQh4QRpxU&ab_channel=ActiveGrowth"
-  }));
-}
-
-var _default = VideoSection;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../../components":"src/components/index.js"}],"src/components/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-Object.defineProperty(exports, "Button", {
-  enumerable: true,
-  get: function () {
-    return _Button.default;
-  }
-});
-Object.defineProperty(exports, "VideoPlayer", {
-  enumerable: true,
-  get: function () {
-    return _VideoPlayer.default;
-  }
-});
-Object.defineProperty(exports, "CourseItem", {
-  enumerable: true,
-  get: function () {
-    return _CourseItem.default;
-  }
-});
-Object.defineProperty(exports, "Login", {
-  enumerable: true,
-  get: function () {
-    return _Login.default;
-  }
-});
-Object.defineProperty(exports, "Home", {
-  enumerable: true,
-  get: function () {
-    return _Home.default;
-  }
-});
-Object.defineProperty(exports, "Search", {
-  enumerable: true,
-  get: function () {
-    return _Search.default;
-  }
-});
-Object.defineProperty(exports, "Pricing", {
-  enumerable: true,
-  get: function () {
-    return _Pricing.default;
-  }
-});
-Object.defineProperty(exports, "Contact", {
-  enumerable: true,
-  get: function () {
-    return _Contact.default;
-  }
-});
-Object.defineProperty(exports, "Course", {
-  enumerable: true,
-  get: function () {
-    return _Course.default;
-  }
-});
-Object.defineProperty(exports, "HomeHero", {
-  enumerable: true,
-  get: function () {
-    return _HomeHero.default;
-  }
-});
-Object.defineProperty(exports, "HomeVideo", {
-  enumerable: true,
-  get: function () {
-    return _HomeVideo.default;
-  }
-});
-Object.defineProperty(exports, "HomeFeatures", {
-  enumerable: true,
-  get: function () {
-    return _HomeFeatures.default;
-  }
-});
-Object.defineProperty(exports, "SearchInput", {
-  enumerable: true,
-  get: function () {
-    return _SearchInput.default;
-  }
-});
-Object.defineProperty(exports, "SearchSorter", {
-  enumerable: true,
-  get: function () {
-    return _SearchSorter.default;
-  }
-});
-Object.defineProperty(exports, "SearchResults", {
-  enumerable: true,
-  get: function () {
-    return _SearchResults.default;
-  }
-});
-Object.defineProperty(exports, "CourseContent", {
-  enumerable: true,
-  get: function () {
-    return _CourseContent.default;
-  }
-});
-Object.defineProperty(exports, "CourseRessources", {
-  enumerable: true,
-  get: function () {
-    return _CourseRessources.default;
-  }
-});
-Object.defineProperty(exports, "CourseProfessor", {
-  enumerable: true,
-  get: function () {
-    return _CourseProfessor.default;
-  }
-});
-Object.defineProperty(exports, "CourseCrossSell", {
-  enumerable: true,
-  get: function () {
-    return _CourseCrossSell.default;
-  }
-});
-Object.defineProperty(exports, "Navbar", {
-  enumerable: true,
-  get: function () {
-    return _Navbar.default;
-  }
-});
-Object.defineProperty(exports, "Footer", {
-  enumerable: true,
-  get: function () {
-    return _Footer.default;
-  }
-});
-Object.defineProperty(exports, "VideoSection", {
-  enumerable: true,
-  get: function () {
-    return _VideoSection.default;
-  }
-});
-
-var _Button = _interopRequireDefault(require("./resuable/Button"));
-
-var _VideoPlayer = _interopRequireDefault(require("./resuable/VideoPlayer"));
-
-var _CourseItem = _interopRequireDefault(require("./resuable/CourseItem"));
-
-var _Login = _interopRequireDefault(require("./routes/Login"));
-
-var _Home = _interopRequireDefault(require("./routes/Home"));
-
-var _Search = _interopRequireDefault(require("./routes/Search"));
-
-var _Pricing = _interopRequireDefault(require("./routes/Pricing"));
-
-var _Contact = _interopRequireDefault(require("./routes/Contact"));
-
-var _Course = _interopRequireDefault(require("./routes/Course"));
-
-var _HomeHero = _interopRequireDefault(require("./sections/HomeHero"));
-
-var _HomeVideo = _interopRequireDefault(require("./sections/HomeVideo"));
-
-var _HomeFeatures = _interopRequireDefault(require("./sections/HomeFeatures"));
-
-var _SearchInput = _interopRequireDefault(require("./sections/SearchInput"));
-
-var _SearchSorter = _interopRequireDefault(require("./sections/SearchSorter"));
-
-var _SearchResults = _interopRequireDefault(require("./sections/SearchResults"));
-
-var _CourseContent = _interopRequireDefault(require("./sections/CourseContent"));
-
-var _CourseRessources = _interopRequireDefault(require("./sections/CourseRessources"));
-
-var _CourseProfessor = _interopRequireDefault(require("./sections/CourseProfessor"));
-
-var _CourseCrossSell = _interopRequireDefault(require("./sections/CourseCrossSell"));
-
-var _Navbar = _interopRequireDefault(require("./common/Navbar"));
-
-var _Footer = _interopRequireDefault(require("./common/Footer"));
-
-var _VideoSection = _interopRequireDefault(require("./common/VideoSection"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./resuable/Button":"src/components/resuable/Button.js","./resuable/VideoPlayer":"src/components/resuable/VideoPlayer.js","./resuable/CourseItem":"src/components/resuable/CourseItem.js","./routes/Login":"src/components/routes/Login.js","./routes/Home":"src/components/routes/Home.js","./routes/Search":"src/components/routes/Search.js","./routes/Pricing":"src/components/routes/Pricing.js","./routes/Contact":"src/components/routes/Contact.js","./routes/Course":"src/components/routes/Course.js","./sections/HomeHero":"src/components/sections/HomeHero.js","./sections/HomeVideo":"src/components/sections/HomeVideo.js","./sections/HomeFeatures":"src/components/sections/HomeFeatures.js","./sections/SearchInput":"src/components/sections/SearchInput.js","./sections/SearchSorter":"src/components/sections/SearchSorter.js","./sections/SearchResults":"src/components/sections/SearchResults.js","./sections/CourseContent":"src/components/sections/CourseContent.js","./sections/CourseRessources":"src/components/sections/CourseRessources.js","./sections/CourseProfessor":"src/components/sections/CourseProfessor.js","./sections/CourseCrossSell":"src/components/sections/CourseCrossSell.js","./common/Navbar":"src/components/common/Navbar.js","./common/Footer":"src/components/common/Footer.js","./common/VideoSection":"src/components/common/VideoSection.js"}],"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54825,7 +54371,701 @@ var _useDragControls = require("./gestures/drag/use-drag-controls.js");
 var _useAnimatedState = require("./animation/use-animated-state.js");
 
 var _useInvertedScale = require("./value/use-inverted-scale.js");
-},{"./components/AnimateSharedLayout/types.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js","./value/index.js":"node_modules/framer-motion/dist/es/value/index.js","./render/utils/animation.js":"node_modules/framer-motion/dist/es/render/utils/animation.js","./animation/animation-controls.js":"node_modules/framer-motion/dist/es/animation/animation-controls.js","./render/dom/projection/scale-correction.js":"node_modules/framer-motion/dist/es/render/dom/projection/scale-correction.js","./render/index.js":"node_modules/framer-motion/dist/es/render/index.js","./motion/utils/valid-prop.js":"node_modules/framer-motion/dist/es/motion/utils/valid-prop.js","./motion/context/MotionConfigContext.js":"node_modules/framer-motion/dist/es/motion/context/MotionConfigContext.js","./components/AnimatePresence/PresenceContext.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceContext.js","./components/AnimatePresence/use-presence.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.js","./components/AnimateSharedLayout/LayoutGroupContext.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/LayoutGroupContext.js","./components/AnimateSharedLayout/SharedLayoutContext.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/SharedLayoutContext.js","./motion/index.js":"node_modules/framer-motion/dist/es/motion/index.js","./events/use-dom-event.js":"node_modules/framer-motion/dist/es/events/use-dom-event.js","./motion/features/drag.js":"node_modules/framer-motion/dist/es/motion/features/drag.js","./gestures/use-pan-gesture.js":"node_modules/framer-motion/dist/es/gestures/use-pan-gesture.js","./gestures/use-tap-gesture.js":"node_modules/framer-motion/dist/es/gestures/use-tap-gesture.js","./gestures/use-gestures.js":"node_modules/framer-motion/dist/es/gestures/use-gestures.js","./motion/features/gestures.js":"node_modules/framer-motion/dist/es/motion/features/gestures.js","./motion/features/exit.js":"node_modules/framer-motion/dist/es/motion/features/exit.js","./motion/features/animation.js":"node_modules/framer-motion/dist/es/motion/features/animation.js","./motion/features/layout/Animate.js":"node_modules/framer-motion/dist/es/motion/features/layout/Animate.js","./render/dom/motion.js":"node_modules/framer-motion/dist/es/render/dom/motion.js","./render/dom/motion-minimal.js":"node_modules/framer-motion/dist/es/render/dom/motion-minimal.js","./components/AnimatePresence/index.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/index.js","./animation/animate.js":"node_modules/framer-motion/dist/es/animation/animate.js","./components/AnimateSharedLayout/utils/crossfader.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/utils/crossfader.js","./components/AnimateSharedLayout/index.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/index.js","./value/use-motion-value.js":"node_modules/framer-motion/dist/es/value/use-motion-value.js","./value/use-motion-template.js":"node_modules/framer-motion/dist/es/value/use-motion-template.js","./value/utils/resolve-motion-value.js":"node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.js","./utils/transform.js":"node_modules/framer-motion/dist/es/utils/transform.js","./value/use-transform.js":"node_modules/framer-motion/dist/es/value/use-transform.js","./value/use-spring.js":"node_modules/framer-motion/dist/es/value/use-spring.js","./value/use-velocity.js":"node_modules/framer-motion/dist/es/value/use-velocity.js","./value/scroll/use-element-scroll.js":"node_modules/framer-motion/dist/es/value/scroll/use-element-scroll.js","./value/scroll/use-viewport-scroll.js":"node_modules/framer-motion/dist/es/value/scroll/use-viewport-scroll.js","./utils/use-reduced-motion.js":"node_modules/framer-motion/dist/es/utils/use-reduced-motion.js","./animation/use-animation.js":"node_modules/framer-motion/dist/es/animation/use-animation.js","./utils/use-cycle.js":"node_modules/framer-motion/dist/es/utils/use-cycle.js","./gestures/drag/use-drag-controls.js":"node_modules/framer-motion/dist/es/gestures/drag/use-drag-controls.js","./animation/use-animated-state.js":"node_modules/framer-motion/dist/es/animation/use-animated-state.js","./value/use-inverted-scale.js":"node_modules/framer-motion/dist/es/value/use-inverted-scale.js"}],"node_modules/react-redux/es/components/Context.js":[function(require,module,exports) {
+},{"./components/AnimateSharedLayout/types.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js","./value/index.js":"node_modules/framer-motion/dist/es/value/index.js","./render/utils/animation.js":"node_modules/framer-motion/dist/es/render/utils/animation.js","./animation/animation-controls.js":"node_modules/framer-motion/dist/es/animation/animation-controls.js","./render/dom/projection/scale-correction.js":"node_modules/framer-motion/dist/es/render/dom/projection/scale-correction.js","./render/index.js":"node_modules/framer-motion/dist/es/render/index.js","./motion/utils/valid-prop.js":"node_modules/framer-motion/dist/es/motion/utils/valid-prop.js","./motion/context/MotionConfigContext.js":"node_modules/framer-motion/dist/es/motion/context/MotionConfigContext.js","./components/AnimatePresence/PresenceContext.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/PresenceContext.js","./components/AnimatePresence/use-presence.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.js","./components/AnimateSharedLayout/LayoutGroupContext.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/LayoutGroupContext.js","./components/AnimateSharedLayout/SharedLayoutContext.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/SharedLayoutContext.js","./motion/index.js":"node_modules/framer-motion/dist/es/motion/index.js","./events/use-dom-event.js":"node_modules/framer-motion/dist/es/events/use-dom-event.js","./motion/features/drag.js":"node_modules/framer-motion/dist/es/motion/features/drag.js","./gestures/use-pan-gesture.js":"node_modules/framer-motion/dist/es/gestures/use-pan-gesture.js","./gestures/use-tap-gesture.js":"node_modules/framer-motion/dist/es/gestures/use-tap-gesture.js","./gestures/use-gestures.js":"node_modules/framer-motion/dist/es/gestures/use-gestures.js","./motion/features/gestures.js":"node_modules/framer-motion/dist/es/motion/features/gestures.js","./motion/features/exit.js":"node_modules/framer-motion/dist/es/motion/features/exit.js","./motion/features/animation.js":"node_modules/framer-motion/dist/es/motion/features/animation.js","./motion/features/layout/Animate.js":"node_modules/framer-motion/dist/es/motion/features/layout/Animate.js","./render/dom/motion.js":"node_modules/framer-motion/dist/es/render/dom/motion.js","./render/dom/motion-minimal.js":"node_modules/framer-motion/dist/es/render/dom/motion-minimal.js","./components/AnimatePresence/index.js":"node_modules/framer-motion/dist/es/components/AnimatePresence/index.js","./animation/animate.js":"node_modules/framer-motion/dist/es/animation/animate.js","./components/AnimateSharedLayout/utils/crossfader.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/utils/crossfader.js","./components/AnimateSharedLayout/index.js":"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/index.js","./value/use-motion-value.js":"node_modules/framer-motion/dist/es/value/use-motion-value.js","./value/use-motion-template.js":"node_modules/framer-motion/dist/es/value/use-motion-template.js","./value/utils/resolve-motion-value.js":"node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.js","./utils/transform.js":"node_modules/framer-motion/dist/es/utils/transform.js","./value/use-transform.js":"node_modules/framer-motion/dist/es/value/use-transform.js","./value/use-spring.js":"node_modules/framer-motion/dist/es/value/use-spring.js","./value/use-velocity.js":"node_modules/framer-motion/dist/es/value/use-velocity.js","./value/scroll/use-element-scroll.js":"node_modules/framer-motion/dist/es/value/scroll/use-element-scroll.js","./value/scroll/use-viewport-scroll.js":"node_modules/framer-motion/dist/es/value/scroll/use-viewport-scroll.js","./utils/use-reduced-motion.js":"node_modules/framer-motion/dist/es/utils/use-reduced-motion.js","./animation/use-animation.js":"node_modules/framer-motion/dist/es/animation/use-animation.js","./utils/use-cycle.js":"node_modules/framer-motion/dist/es/utils/use-cycle.js","./gestures/drag/use-drag-controls.js":"node_modules/framer-motion/dist/es/gestures/drag/use-drag-controls.js","./animation/use-animated-state.js":"node_modules/framer-motion/dist/es/animation/use-animated-state.js","./value/use-inverted-scale.js":"node_modules/framer-motion/dist/es/value/use-inverted-scale.js"}],"src/components/sections/SearchResults.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _index = require("../index");
+
+var _framerMotion = require("framer-motion");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function SearchResults() {
+  var MotionCourseItem = (0, _framerMotion.motion)(_index.CourseItem);
+  var motion_containerVariant = {
+    hidden: {},
+    show: {
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  };
+  var motion_itemVariant = {
+    hidden: {
+      opacity: 0,
+      y: 20
+    },
+    show: {
+      opacity: 1,
+      y: 0
+    }
+  };
+  return /*#__PURE__*/_react.default.createElement(_framerMotion.motion.div, {
+    className: "coursesGrid",
+    variants: motion_containerVariant,
+    initial: "hidden",
+    animate: "show"
+  }, Array(5).fill("").map(function (_, i) {
+    return /*#__PURE__*/_react.default.createElement(MotionCourseItem, {
+      variants: motion_itemVariant,
+      initial: "hidden",
+      animate: "show",
+      course: {
+        title: "Course title",
+        author: "Author name",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
+        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
+      },
+      key: i
+    });
+  }));
+}
+
+var _default = SearchResults;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js","framer-motion":"node_modules/framer-motion/dist/es/index.js"}],"src/assets/arrow_icon.svg":[function(require,module,exports) {
+module.exports = "/arrow_icon.d1389ef9.svg";
+},{}],"src/assets/trophy_icon.svg":[function(require,module,exports) {
+module.exports = "/trophy_icon.803eb5ab.svg";
+},{}],"src/components/sections/CourseContent.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _index = require("../index");
+
+var _arrow_icon = _interopRequireDefault(require("../../assets/arrow_icon.svg"));
+
+var _trophy_icon = _interopRequireDefault(require("../../assets/trophy_icon.svg"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var VideoModule = function VideoModule(_ref) {
+  var title = _ref.title,
+      videos = _ref.videos,
+      _ref$open = _ref.open,
+      open = _ref$open === void 0 ? false : _ref$open;
+
+  var _useState = (0, _react.useState)(open),
+      _useState2 = _slicedToArray(_useState, 2),
+      _open = _useState2[0],
+      setOpen = _useState2[1];
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "module"
+  }, /*#__PURE__*/_react.default.createElement("h5", {
+    className: "module__title",
+    onClick: function onClick(_) {
+      return setOpen(function (ps) {
+        return !ps;
+      });
+    }
+  }, title), /*#__PURE__*/_react.default.createElement("ul", {
+    className: "module__videos ".concat(_open && "open")
+  }, videos === null || videos === void 0 ? void 0 : videos.map(function (video, i) {
+    return /*#__PURE__*/_react.default.createElement("li", {
+      className: "video",
+      key: i
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "video__title"
+    }, video === null || video === void 0 ? void 0 : video.title), /*#__PURE__*/_react.default.createElement("div", {
+      className: "video__duration"
+    }, video === null || video === void 0 ? void 0 : video.duration));
+  })));
+};
+
+function CourseContent() {
+  var history = (0, _reactRouterDom.useHistory)();
+
+  var goBack = function goBack() {
+    return history.goBack();
+  };
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "sizeContainer courseContent"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "completedRow"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "goBackBtn",
+    src: _arrow_icon.default,
+    alt: "go back button (arrow left)",
+    onClick: goBack
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "completed"
+  }, /*#__PURE__*/_react.default.createElement("span", {
+    className: "completed__text"
+  }, "You have completed 21% of the course"), /*#__PURE__*/_react.default.createElement("img", {
+    className: "completed__icon",
+    src: _trophy_icon.default,
+    alt: "trophy image"
+  }))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "videoContainer"
+  }, /*#__PURE__*/_react.default.createElement(_index.VideoPlayer, {
+    className: "videoPlayer",
+    url: "https://youtu.be/BVEQh4QRpxU"
+  }), /*#__PURE__*/_react.default.createElement("aside", {
+    className: "videoAside"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "header"
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "course__title"
+  }, "Course Title"), /*#__PURE__*/_react.default.createElement("small", {
+    className: "courseAuthor"
+  }, "by Author name")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "modules"
+  }, /*#__PURE__*/_react.default.createElement(VideoModule, {
+    open: true,
+    title: "Module 1",
+    videos: [{
+      title: "Video 1",
+      duration: "2min 27"
+    }, {
+      title: "Video 2",
+      duration: "2min 27"
+    }, {
+      title: "Video 3",
+      duration: "2min 27"
+    }]
+  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
+    title: "Module 2",
+    videos: [{
+      title: "Video 1",
+      duration: "2min 27"
+    }, {
+      title: "Video 2",
+      duration: "2min 27"
+    }, {
+      title: "Video 3",
+      duration: "2min 27"
+    }]
+  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
+    title: "Module 3",
+    videos: [{
+      title: "Video 1",
+      duration: "2min 27"
+    }, {
+      title: "Video 2",
+      duration: "2min 27"
+    }, {
+      title: "Video 3",
+      duration: "2min 27"
+    }]
+  }), /*#__PURE__*/_react.default.createElement(VideoModule, {
+    title: "Module 4",
+    npm: true,
+    videos: [{
+      title: "Video 1",
+      duration: "2min 27"
+    }, {
+      title: "Video 2",
+      duration: "2min 27"
+    }, {
+      title: "Video 3",
+      duration: "2min 27"
+    }]
+  })))));
+}
+
+var _default = CourseContent;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js","../../assets/arrow_icon.svg":"src/assets/arrow_icon.svg","../../assets/trophy_icon.svg":"src/assets/trophy_icon.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/assets/download_icon.svg":[function(require,module,exports) {
+module.exports = "/download_icon.8b6f4810.svg";
+},{}],"src/components/sections/CourseRessources.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _download_icon = _interopRequireDefault(require("../../assets/download_icon.svg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CourseRessources() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "sizeContainer courseRessources"
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "courseTitle"
+  }, "RESSOURCES"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "courseSubtitle"
+  }, "Find all the ressources of the course here, exercice files, demo files, assets..."), /*#__PURE__*/_react.default.createElement("ul", {
+    className: "ressources"
+  }, /*#__PURE__*/_react.default.createElement("li", {
+    className: "ressource"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__filename"
+  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__row"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__fileweight"
+  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
+    className: "ressource__download",
+    src: _download_icon.default,
+    alt: "Download button"
+  }))), /*#__PURE__*/_react.default.createElement("li", {
+    className: "ressource"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__filename"
+  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__row"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__fileweight"
+  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
+    className: "ressource__download",
+    src: _download_icon.default,
+    alt: "Download button"
+  }))), /*#__PURE__*/_react.default.createElement("li", {
+    className: "ressource"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__filename"
+  }, "Exercice 01.docx"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__row"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "ressource__fileweight"
+  }, "12.36 Mo"), /*#__PURE__*/_react.default.createElement("img", {
+    className: "ressource__download",
+    src: _download_icon.default,
+    alt: "Download button"
+  })))));
+}
+
+var _default = CourseRessources;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../../assets/download_icon.svg":"src/assets/download_icon.svg"}],"src/components/sections/CourseProfessor.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _index = require("../index");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CourseProfessor() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "sizeContainer courseProfessor"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "courseTitle"
+  }, "YOUR PROFESSOR"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    className: "photo",
+    src: "https://via.placeholder.com/1000",
+    alt: ""
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "content"
+  }, /*#__PURE__*/_react.default.createElement("h3", {
+    className: "name"
+  }, "PROFESSOR NAME"), /*#__PURE__*/_react.default.createElement("p", {
+    className: "description"
+  }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, perspiciatis eos. Voluptatibus maxime at cum recusandae, quo dolor provident nostrum quam odit beatae totam, commodi nesciunt laudantium et sapiente? Dolorem architecto commodi sunt. Magni illo veniam hic incidunt. Dignissimos amet deleniti culpa pariatur itaque! Temporibus ipsum est sunt veritatis amet sequi sapiente corrupti deleniti qui cum non, fuga exercitationem autem corporis esse quod reprehenderit et! Ad soluta ab natus aspernatur voluptates. Tempora libero quidem voluptatem."), /*#__PURE__*/_react.default.createElement(_index.Button, {
+    className: "cta",
+    rounded: true
+  }, "Ask me a question"))));
+}
+
+var _default = CourseProfessor;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/sections/CourseCrossSell.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _index = require("../index");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CourseCrossSell() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "sizeContainer courseCrossSell"
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "courseTitle"
+  }, "More courses like this one"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "coursesGrid"
+  }, Array(4).fill().map(function (_, i) {
+    return /*#__PURE__*/_react.default.createElement(_index.CourseItem, {
+      course: {
+        title: "Course title",
+        author: "Author name",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
+        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
+      },
+      key: i
+    });
+  })));
+}
+
+var _default = CourseCrossSell;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/Navbar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function Navbar() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      mobileOpen = _useState2[0],
+      setMobileOpen = _useState2[1];
+
+  return /*#__PURE__*/_react.default.createElement("header", {
+    className: "navbar"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "logo"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "FTRI"))), /*#__PURE__*/_react.default.createElement("nav", {
+    className: "nav_links ".concat(mobileOpen && "open")
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "nav__mobileClose",
+    onClick: function onClick() {
+      return setMobileOpen(false);
+    }
+  }, "\xD7"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav_link"
+  }, "Home")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/pricing"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav_link"
+  }, "Pricing")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/contact"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav_link"
+  }, "Contact us")), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/login"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "nav_link loginBtn"
+  }, "Login"))), /*#__PURE__*/_react.default.createElement("button", {
+    className: "nav__mobileOpen",
+    onClick: function onClick() {
+      return setMobileOpen(true);
+    }
+  }, "\u2261"));
+}
+
+var _default = Navbar;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/components/common/Footer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _index = require("../index");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Footer() {
+  return /*#__PURE__*/_react.default.createElement("footer", {
+    className: "footer"
+  }, /*#__PURE__*/_react.default.createElement("div", null, "footer"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "newsletter"
+  }, /*#__PURE__*/_react.default.createElement("h4", {
+    className: "title"
+  }, "Subscribe to our newsletter !"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "relativeContainer"
+  }, /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    className: "input",
+    placeholder: "Your email here..."
+  }), /*#__PURE__*/_react.default.createElement(_index.Button, {
+    rounded: true,
+    small: true,
+    className: "subscribeBtn"
+  }, "Subscribe"))));
+}
+
+var _default = Footer;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/VideoSection.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _components = require("../../components");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function VideoSection() {
+  return /*#__PURE__*/_react.default.createElement("section", {
+    className: "videoSection"
+  }, /*#__PURE__*/_react.default.createElement(_components.VideoPlayer, {
+    url: "https://www.youtube.com/watch?v=BVEQh4QRpxU&ab_channel=ActiveGrowth"
+  }));
+}
+
+var _default = VideoSection;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../../components":"src/components/index.js"}],"src/components/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function () {
+    return _Button.default;
+  }
+});
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function () {
+    return _Form.default;
+  }
+});
+Object.defineProperty(exports, "VideoPlayer", {
+  enumerable: true,
+  get: function () {
+    return _VideoPlayer.default;
+  }
+});
+Object.defineProperty(exports, "CourseItem", {
+  enumerable: true,
+  get: function () {
+    return _CourseItem.default;
+  }
+});
+Object.defineProperty(exports, "Login", {
+  enumerable: true,
+  get: function () {
+    return _Login.default;
+  }
+});
+Object.defineProperty(exports, "Home", {
+  enumerable: true,
+  get: function () {
+    return _Home.default;
+  }
+});
+Object.defineProperty(exports, "Search", {
+  enumerable: true,
+  get: function () {
+    return _Search.default;
+  }
+});
+Object.defineProperty(exports, "Pricing", {
+  enumerable: true,
+  get: function () {
+    return _Pricing.default;
+  }
+});
+Object.defineProperty(exports, "Contact", {
+  enumerable: true,
+  get: function () {
+    return _Contact.default;
+  }
+});
+Object.defineProperty(exports, "Course", {
+  enumerable: true,
+  get: function () {
+    return _Course.default;
+  }
+});
+Object.defineProperty(exports, "HomeHero", {
+  enumerable: true,
+  get: function () {
+    return _HomeHero.default;
+  }
+});
+Object.defineProperty(exports, "HomeVideo", {
+  enumerable: true,
+  get: function () {
+    return _HomeVideo.default;
+  }
+});
+Object.defineProperty(exports, "HomeFeatures", {
+  enumerable: true,
+  get: function () {
+    return _HomeFeatures.default;
+  }
+});
+Object.defineProperty(exports, "SearchInput", {
+  enumerable: true,
+  get: function () {
+    return _SearchInput.default;
+  }
+});
+Object.defineProperty(exports, "SearchSorter", {
+  enumerable: true,
+  get: function () {
+    return _SearchSorter.default;
+  }
+});
+Object.defineProperty(exports, "SearchResults", {
+  enumerable: true,
+  get: function () {
+    return _SearchResults.default;
+  }
+});
+Object.defineProperty(exports, "CourseContent", {
+  enumerable: true,
+  get: function () {
+    return _CourseContent.default;
+  }
+});
+Object.defineProperty(exports, "CourseRessources", {
+  enumerable: true,
+  get: function () {
+    return _CourseRessources.default;
+  }
+});
+Object.defineProperty(exports, "CourseProfessor", {
+  enumerable: true,
+  get: function () {
+    return _CourseProfessor.default;
+  }
+});
+Object.defineProperty(exports, "CourseCrossSell", {
+  enumerable: true,
+  get: function () {
+    return _CourseCrossSell.default;
+  }
+});
+Object.defineProperty(exports, "Navbar", {
+  enumerable: true,
+  get: function () {
+    return _Navbar.default;
+  }
+});
+Object.defineProperty(exports, "Footer", {
+  enumerable: true,
+  get: function () {
+    return _Footer.default;
+  }
+});
+Object.defineProperty(exports, "VideoSection", {
+  enumerable: true,
+  get: function () {
+    return _VideoSection.default;
+  }
+});
+
+var _Button = _interopRequireDefault(require("./resuable/Button"));
+
+var _Form = _interopRequireDefault(require("./resuable/Form"));
+
+var _VideoPlayer = _interopRequireDefault(require("./resuable/VideoPlayer"));
+
+var _CourseItem = _interopRequireDefault(require("./resuable/CourseItem"));
+
+var _Login = _interopRequireDefault(require("./routes/Login"));
+
+var _Home = _interopRequireDefault(require("./routes/Home"));
+
+var _Search = _interopRequireDefault(require("./routes/Search"));
+
+var _Pricing = _interopRequireDefault(require("./routes/Pricing"));
+
+var _Contact = _interopRequireDefault(require("./routes/Contact"));
+
+var _Course = _interopRequireDefault(require("./routes/Course"));
+
+var _HomeHero = _interopRequireDefault(require("./sections/HomeHero"));
+
+var _HomeVideo = _interopRequireDefault(require("./sections/HomeVideo"));
+
+var _HomeFeatures = _interopRequireDefault(require("./sections/HomeFeatures"));
+
+var _SearchInput = _interopRequireDefault(require("./sections/SearchInput"));
+
+var _SearchSorter = _interopRequireDefault(require("./sections/SearchSorter"));
+
+var _SearchResults = _interopRequireDefault(require("./sections/SearchResults"));
+
+var _CourseContent = _interopRequireDefault(require("./sections/CourseContent"));
+
+var _CourseRessources = _interopRequireDefault(require("./sections/CourseRessources"));
+
+var _CourseProfessor = _interopRequireDefault(require("./sections/CourseProfessor"));
+
+var _CourseCrossSell = _interopRequireDefault(require("./sections/CourseCrossSell"));
+
+var _Navbar = _interopRequireDefault(require("./common/Navbar"));
+
+var _Footer = _interopRequireDefault(require("./common/Footer"));
+
+var _VideoSection = _interopRequireDefault(require("./common/VideoSection"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+},{"./resuable/Button":"src/components/resuable/Button.js","./resuable/Form":"src/components/resuable/Form.js","./resuable/VideoPlayer":"src/components/resuable/VideoPlayer.js","./resuable/CourseItem":"src/components/resuable/CourseItem.js","./routes/Login":"src/components/routes/Login.js","./routes/Home":"src/components/routes/Home.js","./routes/Search":"src/components/routes/Search.js","./routes/Pricing":"src/components/routes/Pricing.js","./routes/Contact":"src/components/routes/Contact.js","./routes/Course":"src/components/routes/Course.js","./sections/HomeHero":"src/components/sections/HomeHero.js","./sections/HomeVideo":"src/components/sections/HomeVideo.js","./sections/HomeFeatures":"src/components/sections/HomeFeatures.js","./sections/SearchInput":"src/components/sections/SearchInput.js","./sections/SearchSorter":"src/components/sections/SearchSorter.js","./sections/SearchResults":"src/components/sections/SearchResults.js","./sections/CourseContent":"src/components/sections/CourseContent.js","./sections/CourseRessources":"src/components/sections/CourseRessources.js","./sections/CourseProfessor":"src/components/sections/CourseProfessor.js","./sections/CourseCrossSell":"src/components/sections/CourseCrossSell.js","./common/Navbar":"src/components/common/Navbar.js","./common/Footer":"src/components/common/Footer.js","./common/VideoSection":"src/components/common/VideoSection.js"}],"node_modules/react-redux/es/components/Context.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57213,11 +57453,13 @@ function App() {
   var user = (0, _reactRedux.useSelector)(function (state) {
     return state.user;
   });
-  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_components.Navbar, null), /*#__PURE__*/_react.default.createElement(_framerMotion.AnimatePresence, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/login",
     component: _components.Login
   }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
+    path: "*"
+  }, /*#__PURE__*/_react.default.createElement(_components.Navbar, null), /*#__PURE__*/_react.default.createElement(_framerMotion.AnimatePresence, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Switch, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
     exact: true,
     path: "/",
     component: _components.Home
@@ -57237,7 +57479,7 @@ function App() {
     exact: true,
     path: "/course/:courseId",
     component: _components.Course
-  }))), /*#__PURE__*/_react.default.createElement(_components.Footer, null));
+  }))), /*#__PURE__*/_react.default.createElement(_components.Footer, null))));
 }
 
 var _default = App;
@@ -57318,7 +57560,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56564" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57625" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

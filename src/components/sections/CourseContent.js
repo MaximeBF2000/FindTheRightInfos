@@ -50,7 +50,7 @@ function CourseContent() {
 				</div>
 			</div>
 			<div className="videoContainer">
-				<VideoPlayer url="https://youtu.be/BVEQh4QRpxU" />
+				<VideoPlayer className="videoPlayer" url="https://youtu.be/BVEQh4QRpxU" />
 				<aside className="videoAside">
 					<div className="header">
 						<h2 className="course__title">Course Title</h2>

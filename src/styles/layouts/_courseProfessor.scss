@@ -31,4 +31,15 @@
       }
     }
   }
+
+  @include mediaquery(max-width, small) {
+    .row {
+      flex-direction: column;
+      row-gap: 4rem;
+
+      .content {
+        max-width: unset;
+      }
+    }
+  }
 }

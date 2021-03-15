@@ -1,0 +1,76 @@
+.login {
+  min-height: 100vh;
+  display: flex;
+
+  @include mediaquery(max-width, small) {
+    flex-direction: column-reverse;
+  }
+
+  .box {
+    position: relative;
+    min-width: 500px;
+    height: 100vh;
+    box-shadow: 0 2px 12px lightgrey;
+    padding: 4rem 3rem;
+    background-color: #fff;
+    position: relative;
+
+    .logo {
+      cursor: pointer;
+      position: absolute;
+      top: .5rem;
+      left: .5rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: darken($darkgrey, 10%);
+
+      @include mediaquery(max-width, small) {
+        display: none;
+      }
+    }
+  
+    .switchForm {
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: .8rem;
+
+      span {
+        color: $orange;
+        cursor: pointer;
+      }
+    }
+
+    @include mediaquery(max-width, small) {
+      min-width: unset;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__image {
+    @extend .center;
+    flex: 1;
+    row-gap: 2rem;
+    padding: 2rem;
+
+    &>img {
+      width: 60%;
+    }
+
+    &--title {
+      text-align: center;
+      font-size: 1.6rem;
+      color: darken($darkgrey, 10%);
+      font-weight: 900;
+
+      @include mediaquery(max-width, medium) {
+        font-size: 1.3rem;
+      }
+    }
+
+    @include mediaquery(max-width, small) {
+      // display: none;
+    }
+  }
+}

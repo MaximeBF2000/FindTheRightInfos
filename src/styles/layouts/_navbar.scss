@@ -22,15 +22,15 @@
       left: 0;
       right: 0;
       padding: 2rem;
-      padding-top: 5rem;
+      padding-top: 4rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      row-gap: 1rem;
+      align-items: flex-start;
+      row-gap: 1.5rem;
       clip-path: circle(0 at 100% 0);
 
       &.open {
-        clip-path: circle(500px at 100% 0);
+        clip-path: circle(1000px at 100% 0);
       }
     }
 
@@ -72,6 +72,7 @@
       }
 
       &.loginBtn {
+        display: inline-block;
         color: white;
         background: $orange;
         padding: .3rem .8rem;
