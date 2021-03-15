@@ -39110,7 +39110,76 @@ function VideoPlayer(_ref) {
 
 var _default = VideoPlayer;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-player":"node_modules/react-player/lib/index.js"}],"src/components/routes/Login.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-player":"node_modules/react-player/lib/index.js"}],"src/assets/image.svg":[function(require,module,exports) {
+module.exports = "/image.b8e563d7.svg";
+},{}],"src/assets/playbutton.svg":[function(require,module,exports) {
+module.exports = "/playbutton.2782362e.svg";
+},{}],"src/utils/functions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.truncate = void 0;
+
+var truncate = function truncate(str, n) {
+  if (str.length <= n) return str;
+  return str.slice(0, n) + "...";
+};
+
+exports.truncate = truncate;
+},{}],"src/components/resuable/CourseItem.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _image = _interopRequireDefault(require("../../assets/image.svg"));
+
+var _playbutton = _interopRequireDefault(require("../../assets/playbutton.svg"));
+
+var _reactRouterDom = require("react-router-dom");
+
+var _functions = require("../../utils/functions");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function CourseItem(_ref) {
+  var _course$modules;
+
+  var course = _ref.course;
+  return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/course/".concat("courseId")
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "courseItem"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "course__img"
+  }, /*#__PURE__*/_react.default.createElement("img", {
+    src: _image.default,
+    alt: ""
+  })), /*#__PURE__*/_react.default.createElement("div", {
+    className: "course__text"
+  }, /*#__PURE__*/_react.default.createElement("h3", {
+    className: "course__title"
+  }, course === null || course === void 0 ? void 0 : course.title), /*#__PURE__*/_react.default.createElement("small", {
+    className: "course__author"
+  }, "by ", course === null || course === void 0 ? void 0 : course.author), /*#__PURE__*/_react.default.createElement("p", {
+    className: "course__description"
+  }, (0, _functions.truncate)(course === null || course === void 0 ? void 0 : course.description, 115))), /*#__PURE__*/_react.default.createElement("div", {
+    className: "playModules"
+  }, /*#__PURE__*/_react.default.createElement("span", null, course === null || course === void 0 ? void 0 : (_course$modules = course.modules) === null || _course$modules === void 0 ? void 0 : _course$modules.length, " modules"), /*#__PURE__*/_react.default.createElement("img", {
+    src: _playbutton.default,
+    alt: "play icon"
+  }))));
+}
+
+var _default = CourseItem;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../../assets/image.svg":"src/assets/image.svg","../../assets/playbutton.svg":"src/assets/playbutton.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js","../../utils/functions":"src/utils/functions.js"}],"src/components/routes/Login.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39251,7 +39320,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Course() {
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "course"
-  }, /*#__PURE__*/_react.default.createElement(_index.CourseContent, null), /*#__PURE__*/_react.default.createElement(_index.CourseRessources, null), /*#__PURE__*/_react.default.createElement(_index.CourseProfessor, null));
+  }, /*#__PURE__*/_react.default.createElement(_index.CourseContent, null), /*#__PURE__*/_react.default.createElement(_index.CourseRessources, null), /*#__PURE__*/_react.default.createElement(_index.CourseProfessor, null), /*#__PURE__*/_react.default.createElement(_index.CourseCrossSell, null));
 }
 
 var _default = Course;
@@ -39485,11 +39554,7 @@ function SearchSorter() {
 
 var _default = SearchSorter;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/assets/image.svg":[function(require,module,exports) {
-module.exports = "/image.b8e563d7.svg";
-},{}],"src/assets/playbutton.svg":[function(require,module,exports) {
-module.exports = "/playbutton.2782362e.svg";
-},{}],"src/components/sections/SearchResults.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"src/components/sections/SearchResults.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39499,48 +39564,29 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _image = _interopRequireDefault(require("../../assets/image.svg"));
-
-var _playbutton = _interopRequireDefault(require("../../assets/playbutton.svg"));
-
-var _reactRouterDom = require("react-router-dom");
+var _index = require("../index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function SearchResults() {
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "searchResults__container"
-  }, Array(5).fill().map(function (_, i) {
-    return /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-      to: "/course/".concat("courseId"),
+    className: "coursesGrid"
+  }, Array(5).fill("").map(function (_, i) {
+    return /*#__PURE__*/_react.default.createElement(_index.CourseItem, {
+      course: {
+        title: "Course title",
+        author: "Author name",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
+        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
+      },
       key: i
-    }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "searchResult"
-    }, /*#__PURE__*/_react.default.createElement("div", {
-      className: "result__img"
-    }, /*#__PURE__*/_react.default.createElement("img", {
-      src: _image.default,
-      alt: ""
-    })), /*#__PURE__*/_react.default.createElement("div", {
-      className: "result__text"
-    }, /*#__PURE__*/_react.default.createElement("h3", {
-      className: "title"
-    }, "Course title"), /*#__PURE__*/_react.default.createElement("small", {
-      className: "author"
-    }, "by Author name"), /*#__PURE__*/_react.default.createElement("p", {
-      className: "description"
-    }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex, explicabo rerum inventore quod id a esse vero ill...")), /*#__PURE__*/_react.default.createElement("div", {
-      className: "playModules"
-    }, /*#__PURE__*/_react.default.createElement("span", null, "13 modules"), /*#__PURE__*/_react.default.createElement("img", {
-      src: _playbutton.default,
-      alt: "play icon"
-    }))));
+    });
   }));
 }
 
 var _default = SearchResults;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../../assets/image.svg":"src/assets/image.svg","../../assets/playbutton.svg":"src/assets/playbutton.svg","react-router-dom":"node_modules/react-router-dom/esm/react-router-dom.js"}],"src/assets/arrow_icon.svg":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/assets/arrow_icon.svg":[function(require,module,exports) {
 module.exports = "/arrow_icon.d1389ef9.svg";
 },{}],"src/assets/trophy_icon.svg":[function(require,module,exports) {
 module.exports = "/trophy_icon.803eb5ab.svg";
@@ -39812,7 +39858,7 @@ function CourseProfessor() {
 
 var _default = CourseProfessor;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/Navbar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/sections/CourseCrossSell.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39822,11 +39868,66 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
+var _index = require("../index");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function CourseCrossSell() {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "sizeContainer courseCrossSell"
+  }, /*#__PURE__*/_react.default.createElement("h2", {
+    className: "courseTitle"
+  }, "More courses like this one"), /*#__PURE__*/_react.default.createElement("div", {
+    className: "coursesGrid"
+  }, Array(4).fill().map(function (_, i) {
+    return /*#__PURE__*/_react.default.createElement(_index.CourseItem, {
+      course: {
+        title: "Course title",
+        author: "Author name",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est ex explicabo rerum inventore quod id a esse vero illezezfezfezfezfezfezfez",
+        modules: ["", "", "", "", "", "", "", "", "", "", "", "", ""]
+      },
+      key: i
+    });
+  })));
+}
+
+var _default = CourseCrossSell;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../index":"src/components/index.js"}],"src/components/common/Navbar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactRouterDom = require("react-router-dom");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function Navbar() {
+  var _useState = (0, _react.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      mobileOpen = _useState2[0],
+      setMobileOpen = _useState2[1];
+
   return /*#__PURE__*/_react.default.createElement("header", {
     className: "navbar"
   }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
@@ -39834,8 +39935,13 @@ function Navbar() {
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "logo"
   }, /*#__PURE__*/_react.default.createElement("h1", null, "FTRI"))), /*#__PURE__*/_react.default.createElement("nav", {
-    className: "nav_links"
-  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    className: "nav_links ".concat(mobileOpen && "open")
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "nav__mobileClose",
+    onClick: function onClick() {
+      return setMobileOpen(false);
+    }
+  }, "\xD7"), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
     to: "/"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "nav_link"
@@ -39851,7 +39957,12 @@ function Navbar() {
     to: "/login"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "nav_link loginBtn"
-  }, "Login"))));
+  }, "Login"))), /*#__PURE__*/_react.default.createElement("button", {
+    className: "nav__mobileOpen",
+    onClick: function onClick() {
+      return setMobileOpen(true);
+    }
+  }, "\u2261"));
 }
 
 var _default = Navbar;
@@ -39932,6 +40043,12 @@ Object.defineProperty(exports, "VideoPlayer", {
   enumerable: true,
   get: function () {
     return _VideoPlayer.default;
+  }
+});
+Object.defineProperty(exports, "CourseItem", {
+  enumerable: true,
+  get: function () {
+    return _CourseItem.default;
   }
 });
 Object.defineProperty(exports, "Login", {
@@ -40024,6 +40141,12 @@ Object.defineProperty(exports, "CourseProfessor", {
     return _CourseProfessor.default;
   }
 });
+Object.defineProperty(exports, "CourseCrossSell", {
+  enumerable: true,
+  get: function () {
+    return _CourseCrossSell.default;
+  }
+});
 Object.defineProperty(exports, "Navbar", {
   enumerable: true,
   get: function () {
@@ -40046,6 +40169,8 @@ Object.defineProperty(exports, "VideoSection", {
 var _Button = _interopRequireDefault(require("./resuable/Button"));
 
 var _VideoPlayer = _interopRequireDefault(require("./resuable/VideoPlayer"));
+
+var _CourseItem = _interopRequireDefault(require("./resuable/CourseItem"));
 
 var _Login = _interopRequireDefault(require("./routes/Login"));
 
@@ -40077,6 +40202,8 @@ var _CourseRessources = _interopRequireDefault(require("./sections/CourseRessour
 
 var _CourseProfessor = _interopRequireDefault(require("./sections/CourseProfessor"));
 
+var _CourseCrossSell = _interopRequireDefault(require("./sections/CourseCrossSell"));
+
 var _Navbar = _interopRequireDefault(require("./common/Navbar"));
 
 var _Footer = _interopRequireDefault(require("./common/Footer"));
@@ -40084,7 +40211,7 @@ var _Footer = _interopRequireDefault(require("./common/Footer"));
 var _VideoSection = _interopRequireDefault(require("./common/VideoSection"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"./resuable/Button":"src/components/resuable/Button.js","./resuable/VideoPlayer":"src/components/resuable/VideoPlayer.js","./routes/Login":"src/components/routes/Login.js","./routes/Home":"src/components/routes/Home.js","./routes/Search":"src/components/routes/Search.js","./routes/Pricing":"src/components/routes/Pricing.js","./routes/Contact":"src/components/routes/Contact.js","./routes/Course":"src/components/routes/Course.js","./sections/HomeHero":"src/components/sections/HomeHero.js","./sections/HomeVideo":"src/components/sections/HomeVideo.js","./sections/HomeFeatures":"src/components/sections/HomeFeatures.js","./sections/SearchInput":"src/components/sections/SearchInput.js","./sections/SearchSorter":"src/components/sections/SearchSorter.js","./sections/SearchResults":"src/components/sections/SearchResults.js","./sections/CourseContent":"src/components/sections/CourseContent.js","./sections/CourseRessources":"src/components/sections/CourseRessources.js","./sections/CourseProfessor":"src/components/sections/CourseProfessor.js","./common/Navbar":"src/components/common/Navbar.js","./common/Footer":"src/components/common/Footer.js","./common/VideoSection":"src/components/common/VideoSection.js"}],"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js":[function(require,module,exports) {
+},{"./resuable/Button":"src/components/resuable/Button.js","./resuable/VideoPlayer":"src/components/resuable/VideoPlayer.js","./resuable/CourseItem":"src/components/resuable/CourseItem.js","./routes/Login":"src/components/routes/Login.js","./routes/Home":"src/components/routes/Home.js","./routes/Search":"src/components/routes/Search.js","./routes/Pricing":"src/components/routes/Pricing.js","./routes/Contact":"src/components/routes/Contact.js","./routes/Course":"src/components/routes/Course.js","./sections/HomeHero":"src/components/sections/HomeHero.js","./sections/HomeVideo":"src/components/sections/HomeVideo.js","./sections/HomeFeatures":"src/components/sections/HomeFeatures.js","./sections/SearchInput":"src/components/sections/SearchInput.js","./sections/SearchSorter":"src/components/sections/SearchSorter.js","./sections/SearchResults":"src/components/sections/SearchResults.js","./sections/CourseContent":"src/components/sections/CourseContent.js","./sections/CourseRessources":"src/components/sections/CourseRessources.js","./sections/CourseProfessor":"src/components/sections/CourseProfessor.js","./sections/CourseCrossSell":"src/components/sections/CourseCrossSell.js","./common/Navbar":"src/components/common/Navbar.js","./common/Footer":"src/components/common/Footer.js","./common/VideoSection":"src/components/common/VideoSection.js"}],"node_modules/framer-motion/dist/es/components/AnimateSharedLayout/types.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -57191,7 +57318,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56142" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52025" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,6 +1,5 @@
 const dummyData = {
   courses: [
-    
   ]
 }
 

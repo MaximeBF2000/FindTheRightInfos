@@ -1,5 +1,5 @@
 import React from 'react'
-import { CourseContent, CourseRessources, CourseProfessor } from "../index"
+import { CourseContent, CourseRessources, CourseProfessor, CourseCrossSell } from "../index"
 
 function Course() {
   return (
@@ -7,6 +7,7 @@ function Course() {
       <CourseContent />
       <CourseRessources />
       <CourseProfessor />
+      <CourseCrossSell />
     </div>
   )
 }

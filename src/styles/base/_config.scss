@@ -7,5 +7,13 @@ $lightgrey: #DEDEDE;
 $darkgrey: #333333;
 
 $sizeContainerSize: 80%;
-
 $b_radius_1: .25rem;
+
+
+$breakpoints: (
+  extralarge: 1200px,
+  large: 1000px,
+  medium: 850px,
+  small: 700px,
+  extrasmall: 500px
+);

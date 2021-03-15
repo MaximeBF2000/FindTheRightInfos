@@ -1,5 +1,6 @@
 export { default as Button } from "./resuable/Button"
 export { default as VideoPlayer } from "./resuable/VideoPlayer"
+export { default as CourseItem } from "./resuable/CourseItem"
 
 export { default as Login } from "./routes/Login"
 export { default as Home } from "./routes/Home"
@@ -17,6 +18,7 @@ export { default as SearchResults } from "./sections/SearchResults"
 export { default as CourseContent } from "./sections/CourseContent"
 export { default as CourseRessources } from "./sections/CourseRessources"
 export { default as CourseProfessor } from "./sections/CourseProfessor"
+export { default as CourseCrossSell } from "./sections/CourseCrossSell"
 
 export { default as Navbar } from "./common/Navbar"
 export { default as Footer } from "./common/Footer"

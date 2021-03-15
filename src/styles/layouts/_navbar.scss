@@ -13,6 +13,38 @@
   .nav_links {
     display: flex;
     column-gap: 1rem;
+    position: relative;
+
+    @include mediaquery(max-width, extrasmall) {
+      position: fixed;
+      background: $orange;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      row-gap: 1rem;
+      clip-path: circle(0 at 100% 0);
+
+      &.open {
+        clip-path: circle(500px at 100% 0);
+      }
+    }
+
+    .nav__mobileClose {
+      display: none;
+      color: white;
+
+      @include mediaquery(max-width, extrasmall) {
+        display: unset;
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: 1.3rem;
+      }
+    }
 
     .nav_link {
       position: relative;
@@ -48,6 +80,27 @@
           content: unset;
         }
       }
+
+      @include mediaquery(max-width, extrasmall) {
+        color: white;
+
+        &.loginBtn {
+          background: white;
+          color: $darkgrey;
+        }
+      }
+    }
+  }
+
+  .nav__mobileOpen {
+    display: none;
+    font-size: 2rem;
+    color: $darkgrey;
+    line-height: 1;
+    @extend .center;
+
+    @include mediaquery(max-width, extrasmall) {
+      display: unset;
     }
   }
 }

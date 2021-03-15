@@ -1,0 +1,13 @@
+@function breakpoint($name) {
+  @return map-get($breakpoints, $name);
+}
+
+@function color($name) {
+  @return map-get($colors, $name);
+}
+
+@mixin mediaquery($type, $bp-name) {
+  @media (#{$type}: map-get($breakpoints, $bp-name)) {
+    @content;
+  }
+}
