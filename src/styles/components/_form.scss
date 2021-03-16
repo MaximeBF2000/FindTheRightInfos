@@ -29,6 +29,13 @@
     }
   }
 
+  &__error {
+    color: #f14141;
+    font-size: .9rem;
+    margin-top: 1rem;
+    margin-bottom: -2rem;
+  }
+
   &__submitBtn {
     width: fit-content;
     margin-top: 2rem;

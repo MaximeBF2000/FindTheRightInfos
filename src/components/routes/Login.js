@@ -1,12 +1,16 @@
 import React, { useState } from "react"
 import { Form } from "../index"
-import { useToggle } from "../../utils/hooks"
+import { useToggle, useError } from "../../utils/hooks"
 import login_img from "../../assets/login_img.svg"
 import { useHistory } from "react-router-dom"
+import { useAuth, useAuthActions } from "../../firebase"
 
 function Login() {
 	const history = useHistory()
+  const [user] = useAuth()
+  const { login, register } = useAuthActions()
 
+  const [error, setError] = useError()
 	const [isSignin, toggleSignin] = useToggle(false)
 
 	const [name, setName] = useState("")
@@ -14,14 +18,25 @@ function Login() {
 	const [password, setPassword] = useState("")
 	const [repeatPassword, setRepeatPassword] = useState("")
 
-	const login = () => {}
+	const login_ = e => {
+    e.preventDefault()
+    login({email, password})
+      .then(() => history.push("/"))
+      .catch(err => setError(err?.message + `| ${email} ${password}`))
+  }
 
-	const register = () => {}
+	const register_ = e => {
+    e.preventDefault()
+    if(!name || !email || !password) return
+    register({name, email, password})
+      .then(() => history.push("/"))
+      .catch(err => setError(err?.message))
+  }
 
 	return (
 		<div className="login">
 			<Form
-				onSubmit={isSignin ? register : login}
+				onSubmit={isSignin ? register_ : login_}
 				className="box"
 				title={`FindTheRightInfos - ${isSignin ? "Register" : "Login"}`}
 			>
@@ -49,6 +64,7 @@ function Login() {
 						setValue={setRepeatPassword}
 					/>
 				)}
+        <Form.ErrorField>{error}</Form.ErrorField>
 				<Form.SubmitButton>{isSignin ? "Register" : "Login"}</Form.SubmitButton>
 				<div className="switchForm">
 					{isSignin ? "Already a member" : "Don't have an account yet"} ?{" "}

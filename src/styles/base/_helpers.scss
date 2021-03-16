@@ -11,3 +11,13 @@
     @content;
   }
 }
+
+@mixin triangle($placement: top, $size: 10px, $color: black) {
+  &::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border: solid $size transparent;
+    border-#{$placement}-color: $color;
+  }
+}

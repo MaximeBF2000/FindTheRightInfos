@@ -30,7 +30,8 @@
       clip-path: circle(0 at 100% 0);
 
       &.open {
-        clip-path: circle(1000px at 100% 0);
+        clip-path: circle(500px at 100% 0);
+        z-index: 1000;
       }
     }
 
@@ -65,7 +66,7 @@
         transition: .3s all;
       }
   
-      &:hover {
+      &:hover, &:focus {
         &::before {
           width: 100%;
         }
@@ -83,6 +84,14 @@
         }
       }
 
+      &.accountBtn {
+        cursor: pointer;
+        color: $orange;
+        &::before {
+          content: unset;
+        }
+      }
+
       @include mediaquery(max-width, extrasmall) {
         color: white;
 
@@ -93,6 +102,40 @@
       }
     }
   }
+
+  .accountModal {
+    @extend .align_v;
+    row-gap: .5rem;
+    position: absolute;
+    top: 150%;
+    right: 0;
+    list-style: none;
+    box-shadow: 0 1px 12px lightgrey;
+    background-color: #fff;
+    padding: .5rem;
+    outline: none;
+    
+    @include triangle($placement: bottom, $color: white);
+    &::after {
+      position: absolute;
+      bottom: 100%;
+      left: 75%;
+    }
+
+    &__header {
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    &__button {
+      transition: all .3s;
+
+      &:hover, &:focus {
+        color: $orange;
+      }
+    }
+  }
+
 
   .nav__mobileOpen {
     display: none;

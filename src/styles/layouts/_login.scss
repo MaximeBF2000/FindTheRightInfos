@@ -2,13 +2,13 @@
   min-height: 100vh;
   display: flex;
 
-  @include mediaquery(max-width, small) {
+  @include mediaquery(max-width, medium) {
     flex-direction: column-reverse;
   }
 
   .box {
     position: relative;
-    min-width: 500px;
+    width: 500px;
     height: 100vh;
     box-shadow: 0 2px 12px lightgrey;
     padding: 4rem 3rem;
@@ -24,7 +24,7 @@
       font-weight: bold;
       color: darken($darkgrey, 10%);
 
-      @include mediaquery(max-width, small) {
+      @include mediaquery(max-width, medium) {
         display: none;
       }
     }
@@ -41,7 +41,7 @@
       }
     }
 
-    @include mediaquery(max-width, small) {
+    @include mediaquery(max-width, medium) {
       min-width: unset;
       width: 100%;
       height: auto;

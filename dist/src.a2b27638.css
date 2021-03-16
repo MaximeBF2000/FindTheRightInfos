@@ -57,7 +57,7 @@ button, input {
   align-items: center;
 }
 
-.align_v, .videoSection {
+.align_v, .videoSection, .navbar .accountModal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +104,12 @@ button, input {
   border-radius: 0.25rem;
   padding: 0.5rem;
   font-size: inherit;
+}
+.form__error {
+  color: #f14141;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  margin-bottom: -2rem;
 }
 .form__submitBtn {
   width: fit-content;
@@ -210,7 +216,8 @@ button, input {
     clip-path: circle(0 at 100% 0);
   }
   .navbar .nav_links.open {
-    clip-path: circle(1000px at 100% 0);
+    clip-path: circle(500px at 100% 0);
+    z-index: 1000;
   }
 }
 .navbar .nav_links .nav__mobileClose {
@@ -243,7 +250,7 @@ button, input {
   background-color: #ff5733;
   transition: 0.3s all;
 }
-.navbar .nav_links .nav_link:hover::before {
+.navbar .nav_links .nav_link:hover::before, .navbar .nav_links .nav_link:focus::before {
   width: 100%;
 }
 .navbar .nav_links .nav_link.loginBtn {
@@ -256,6 +263,13 @@ button, input {
 .navbar .nav_links .nav_link.loginBtn::before {
   content: unset;
 }
+.navbar .nav_links .nav_link.accountBtn {
+  cursor: pointer;
+  color: #ff5733;
+}
+.navbar .nav_links .nav_link.accountBtn::before {
+  content: unset;
+}
 @media (max-width: 500px) {
   .navbar .nav_links .nav_link {
     color: white;
@@ -264,6 +278,39 @@ button, input {
     background: white;
     color: #333333;
   }
+}
+.navbar .accountModal {
+  row-gap: 0.5rem;
+  position: absolute;
+  top: 150%;
+  right: 0;
+  list-style: none;
+  box-shadow: 0 1px 12px lightgrey;
+  background-color: #fff;
+  padding: 0.5rem;
+  outline: none;
+}
+.navbar .accountModal::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: solid 10px transparent;
+  border-bottom-color: white;
+}
+.navbar .accountModal::after {
+  position: absolute;
+  bottom: 100%;
+  left: 75%;
+}
+.navbar .accountModal__header {
+  white-space: nowrap;
+  user-select: none;
+}
+.navbar .accountModal__button {
+  transition: all 0.3s;
+}
+.navbar .accountModal__button:hover, .navbar .accountModal__button:focus {
+  color: #ff5733;
 }
 .navbar .nav__mobileOpen {
   display: none;
@@ -669,14 +716,14 @@ button, input {
   min-height: 100vh;
   display: flex;
 }
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .login {
     flex-direction: column-reverse;
   }
 }
 .login .box {
   position: relative;
-  min-width: 500px;
+  width: 500px;
   height: 100vh;
   box-shadow: 0 2px 12px lightgrey;
   padding: 4rem 3rem;
@@ -692,7 +739,7 @@ button, input {
   font-weight: bold;
   color: #1a1a1a;
 }
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .login .box .logo {
     display: none;
   }
@@ -707,7 +754,7 @@ button, input {
   color: #ff5733;
   cursor: pointer;
 }
-@media (max-width: 700px) {
+@media (max-width: 850px) {
   .login .box {
     min-width: unset;
     width: 100%;

@@ -35,3 +35,9 @@ Form.SubmitButton = ({ className, children }) => {
     <button type="submit" className={`form__submitBtn ${className}`}>{children}</button>
   )
 }
+
+Form.ErrorField = ({ children }) => {
+  return (
+    <>{children && <div className="form__error">{children}</div>}</>
+  )
+}
