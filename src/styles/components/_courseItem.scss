@@ -21,7 +21,7 @@
 	border-radius: $b_radius_1;
 
 	.course__img {
-		width: 250px;
+		width: 150px;
 
 		img {
 			max-width: 100%;
@@ -29,6 +29,8 @@
 	}
 
 	.course__text {
+    flex: 1;
+
 		.course__title {
 			font-size: clamp(16px, 5vw, 25px);
 			font-weight: 900;
@@ -41,6 +43,15 @@
 			color: lighten($darkgrey, 10%);
 		}
 	}
+
+  .progress {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    color: lighten($darkgrey, 10%);
+    font-size: .9rem;
+    @extend .center;
+  }
 
 	.playModules {
 		position: absolute;

@@ -19,5 +19,6 @@
     height: 0;
     border: solid $size transparent;
     border-#{$placement}-color: $color;
+    @content;
   }
 }

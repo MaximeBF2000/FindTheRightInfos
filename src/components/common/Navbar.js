@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom"
 import { useAuth, useAuthActions } from "../../firebase"
 import { useToggle } from "../../utils/hooks"
@@ -8,14 +8,6 @@ function Navbar() {
   const [accountModalOpen, toggleAccountModalOpen] = useToggle()
   const [user] = useAuth()
   const { logout } = useAuthActions()
-
-  const accountModalRef = useRef(null)
-
-  const openAccountModal = () => {
-    if(accountModalOpen) return toggleAccountModalOpen()
-    toggleAccountModalOpen()
-    setTimeout(() => { accountModalRef.current.focus() }, 300)
-  }
 
   return (
     <header className="navbar">
@@ -35,9 +27,9 @@ function Navbar() {
         </Link>
         {user ? (
           <div className="relativeContainer">
-            <div className="nav_link accountBtn" onClick={openAccountModal}>My account</div>
+            <div className="nav_link accountBtn" onClick={toggleAccountModalOpen}>My account</div>
             {accountModalOpen && (
-              <ul className="accountModal" tabIndex="1" ref={accountModalRef} onBlur={toggleAccountModalOpen}>
+              <ul className="accountModal">
                 <li className="accountModal__header">Welcome, {user?.name}</li>
                 <Link to="/mycourses">
                   <li className="accountModal__button">My courses</li>

@@ -9,6 +9,7 @@ export { default as Search } from "./routes/Search"
 export { default as Pricing } from "./routes/Pricing"
 export { default as Contact } from "./routes/Contact"
 export { default as Course } from "./routes/Course"
+export { default as MyCourses } from "./routes/MyCourses"
 
 export { default as HomeHero } from "./sections/HomeHero"
 export { default as HomeVideo } from "./sections/HomeVideo"

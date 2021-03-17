@@ -1,0 +1,12 @@
+.mycourses {
+  .title {
+    @extend .courseTitle;
+    margin-bottom: 5rem;
+  }
+
+  .courseLayout {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}

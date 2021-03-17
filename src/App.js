@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import { Navbar, Login, Home, Search, Pricing, Contact, Footer, Course } from "./components"
+import { Navbar, Login, Home, Search, Pricing, Contact, Footer, Course, MyCourses } from "./components"
 import { AnimatePresence } from "framer-motion"
 import { useSelector } from "react-redux"
 
@@ -20,6 +20,7 @@ function App() {
               <Route exact path="/pricing" component={Pricing} />
               <Route exact path="/contact" component={Contact} />
               <Route exact path="/course/:courseId" component={Course} />
+              <Route exact path="/mycourses" component={MyCourses} />
             </Switch>
           </AnimatePresence>
           <Footer />

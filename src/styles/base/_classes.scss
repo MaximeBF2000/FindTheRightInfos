@@ -25,3 +25,8 @@
 .relativeContainer {
   position: relative;
 }
+
+.invisible, .invisible::selection {
+  background-color: transparent;
+  color: transparent;
+}

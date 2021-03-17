@@ -44,7 +44,7 @@ button, input {
   outline: none;
 }
 
-.center, .login__image, .searchPage, .home .homeIntro .col, .navbar .nav__mobileOpen {
+.center, .pricing .priceGrid .priceCol__body .feature, .login__image, .searchPage, .home .homeIntro .col, .navbar .nav__mobileOpen, .courseItem .progress {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +57,7 @@ button, input {
   align-items: center;
 }
 
-.align_v, .videoSection, .navbar .accountModal {
+.align_v, .pricing .priceGrid .priceCol__header, .videoSection, .navbar .accountModal {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +70,11 @@ button, input {
 
 .relativeContainer {
   position: relative;
+}
+
+.invisible, .invisible::selection {
+  background-color: transparent;
+  color: transparent;
 }
 
 .button {
@@ -144,10 +149,13 @@ button, input {
   border-radius: 0.25rem;
 }
 .courseItem .course__img {
-  width: 250px;
+  width: 150px;
 }
 .courseItem .course__img img {
   max-width: 100%;
+}
+.courseItem .course__text {
+  flex: 1;
 }
 .courseItem .course__text .course__title {
   font-size: clamp(16px, 5vw, 25px);
@@ -158,6 +166,13 @@ button, input {
   margin-top: 1.2rem;
   font-size: 0.8rem;
   color: #4d4d4d;
+}
+.courseItem .progress {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  font-size: 0.9rem;
 }
 .courseItem .playModules {
   position: absolute;
@@ -296,8 +311,6 @@ button, input {
   height: 0;
   border: solid 10px transparent;
   border-bottom-color: white;
-}
-.navbar .accountModal::after {
   position: absolute;
   bottom: 100%;
   left: 75%;
@@ -668,7 +681,7 @@ button, input {
   }
 }
 
-.courseTitle {
+.courseTitle, .mycourses .title, .pricing .title {
   font-size: 1.8rem;
   font-weight: 900;
   margin-bottom: 0.8rem;
@@ -780,5 +793,146 @@ button, input {
     font-size: 1.3rem;
   }
 }
+.pricing {
+  margin: 5rem auto;
+}
+.pricing .title {
+  margin-bottom: 8rem;
+}
+.pricing .priceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+}
+.pricing .priceGrid .priceCol {
+  box-shadow: 0 1px 15px lightgrey;
+  height: fit-content;
+}
+.pricing .priceGrid .priceCol:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1px 30px lightgrey;
+}
+.pricing .priceGrid .priceCol.active {
+  background: white;
+  transform: scale(1.1) translateY(-50px);
+}
+.pricing .priceGrid .priceCol.active:hover {
+  transform: translateY(-53px) scale(1.1);
+}
+.pricing .priceGrid .priceCol.active .priceCol__header {
+  background-color: #ff5733;
+  color: white;
+  border-bottom: unset;
+}
+.pricing .priceGrid .priceCol.active .priceCol__header .price {
+  color: #e6e6e6;
+}
+.pricing .priceGrid .priceCol__header {
+  border-bottom: 1px solid #333333;
+  padding: 2rem 0;
+  background-color: #fff;
+}
+.pricing .priceGrid .priceCol__header .name {
+  font-weight: bold;
+  font-size: 2rem;
+}
+.pricing .priceGrid .priceCol__header .price {
+  color: #4d4d4d;
+}
+.pricing .priceGrid .priceCol__body {
+  list-style: none;
+}
+.pricing .priceGrid .priceCol__body .feature {
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+  color: #333333;
+  text-align: center;
+  line-height: 1.4;
+}
+.pricing .priceGrid .priceCol__body .feature:not(:is(:last-child))::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  width: 80%;
+  height: 0.08px;
+  background-color: #333333;
+}
+
+.mycourses .title {
+  margin-bottom: 5rem;
+}
+.mycourses .courseLayout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+/*
+ * react-circular-progressbar styles
+ * All of the styles in this file are configurable!
+ */
+
+.CircularProgressbar {
+  /*
+   * This fixes an issue where the CircularProgressbar svg has
+   * 0 width inside a "display: flex" container, and thus not visible.
+   */
+  width: 100%;
+  /*
+   * This fixes a centering issue with CircularProgressbarWithChildren:
+   * https://github.com/kevinsqi/react-circular-progressbar/issues/94
+   */
+  vertical-align: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+  stroke: #3e98c7;
+  stroke-linecap: round;
+  -webkit-transition: stroke-dashoffset 0.5s ease 0s;
+  transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+  stroke: #d6d6d6;
+  /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
+  stroke-linecap: round;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+  fill: #3e98c7;
+  font-size: 20px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+  fill: #d6d6d6;
+}
+
+/*
+ * Sample background styles. Use these with e.g.:
+ *
+ *   <CircularProgressbar
+ *     className="CircularProgressbar-inverted"
+ *     background
+ *     percentage={50}
+ *   />
+ */
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+  fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+  fill: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+  stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+  stroke: transparent;
+}
+
 
 /*# sourceMappingURL=/src.a2b27638.css.map */

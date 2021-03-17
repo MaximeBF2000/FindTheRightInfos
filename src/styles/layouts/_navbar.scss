@@ -115,8 +115,7 @@
     padding: .5rem;
     outline: none;
     
-    @include triangle($placement: bottom, $color: white);
-    &::after {
+    @include triangle($placement: bottom, $color: white) {
       position: absolute;
       bottom: 100%;
       left: 75%;

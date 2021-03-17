@@ -1,0 +1,81 @@
+.pricing {
+  margin: 5rem auto;
+
+  .title {
+    @extend .courseTitle;
+    margin-bottom: 8rem;
+  }
+
+  .priceGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+
+    .priceCol {
+      box-shadow: 0 1px 15px lightgrey;
+      height: fit-content;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1px 30px lightgrey;
+      }
+
+      &.active {
+        background: white;
+        transform: scale(1.1) translateY(-50px);
+
+        &:hover {
+          transform: translateY(-53px) scale(1.1);
+        }
+
+        .priceCol__header {
+          background-color: $orange;
+          color: white;
+          border-bottom: unset;
+
+          .price {
+            color: darken(white, 10%);
+          }
+        }
+      }
+
+      &__header {
+        border-bottom: 1px solid $darkgrey;
+        padding: 2rem 0;
+        background-color: #fff;
+        @extend .align_v;
+
+        .name {
+          font-weight: bold;
+          font-size: 2rem;
+        }
+        .price {
+          color: lighten($darkgrey, 10%);
+        }
+      }
+
+      &__body {
+        list-style: none;
+
+        .feature {
+          @extend .center;
+          position: relative;
+          width: 100%;
+          padding: 2rem;
+          color: $darkgrey;
+          text-align: center;
+          line-height: 1.4;
+
+          &:not(:is(:last-child))::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 80%;
+            height: .08px;
+            background-color: $darkgrey;
+          }
+        }
+      }
+    }
+  }
+}

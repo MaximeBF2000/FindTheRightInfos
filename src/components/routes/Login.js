@@ -1,9 +1,14 @@
 import React, { useState } from "react"
 import { Form } from "../index"
 import { useToggle, useError } from "../../utils/hooks"
+import { validateStrLength } from "../../utils/functions"
 import login_img from "../../assets/login_img.svg"
 import { useHistory } from "react-router-dom"
 import { useAuth, useAuthActions } from "../../firebase"
+
+
+const checkStrLength = validateStrLength(3, 50)
+
 
 function Login() {
 	const history = useHistory()
@@ -27,6 +32,7 @@ function Login() {
 
 	const register_ = e => {
     e.preventDefault()
+    if(!(checkStrLength(email) && checkStrLength(password))) return setError("This field should contains between 3 and 50 characters")
     if(!name || !email || !password) return
     register({name, email, password})
       .then(() => history.push("/"))
