@@ -2,6 +2,8 @@
 
 E-learning plateform hosting only professional courses and sorted with an advanced filter and sorting algorithm (not built yet)
 
+Live : https://ftri.netlify.app/
+
 
 ### Done right now :
 
