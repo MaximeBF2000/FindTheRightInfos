@@ -7,13 +7,14 @@ Live : https://ftri.netlify.app/
 
 ### Done right now :
 
-Only some templating of the website + the navigation.
+- Some templating of the website + the navigation.
+- Started to add dynamics with dummy data
+- Made some basic unit tests
 
 
 ### TODO : 
 
 - Finish the templating
-- Create the logic (probably with dummy data at first)
 - Create the login and user system
 - Create a premium space (with the paid course) for premium users
 - Create a monthly subscription payment system with Stripe.js
