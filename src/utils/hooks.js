@@ -3,17 +3,18 @@ import { useState, useEffect } from "react"
 export const useToggle = (initialValue = false) => {
   const [value, setValue] = useState(initialValue)
   const toggle = () => setValue(ps => !ps)
-  return [value, toggle]
+  return [value, toggle, setValue]
 }
 
 export const useError = (duration = 3000) => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const timeout = () => { setError(null) }
-    error && setTimeout(timeout, duration)
+    let timeout = setTimeout(() => {
+      error && setError(null) 
+    }, duration)
 
-    return () => clearTimeout(timout)
+    return () => clearTimeout(timeout)
   }, [error])
 
   return [error, setError]

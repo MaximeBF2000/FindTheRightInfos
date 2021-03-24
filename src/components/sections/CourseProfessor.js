@@ -1,17 +1,22 @@
 import React from 'react'
 import { Button } from "../index"
+import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+
 
 function CourseProfessor() {
+  const { courseId } = useParams()
+  const course = useSelector(state => state.courses).find(course => course?.id === courseId)
+  const teacher = useSelector(state => state.teachers).find(teacher => teacher?.id === course?.teacherId)
+
   return (
     <div className="sizeContainer courseProfessor">
       <div className="courseTitle">YOUR PROFESSOR</div>
       <div className="row">
-        <img className="photo" src="https://via.placeholder.com/1000" alt="" />
+        <img className="photo" src={teacher?.image || "https://via.placeholder.com/1000"} alt={`Photo of ${teacher?.name}`} />
         <div className="content">
-          <h3 className="name">PROFESSOR NAME</h3>
-          <p className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, perspiciatis eos. Voluptatibus maxime at cum recusandae, quo dolor provident nostrum quam odit beatae totam, commodi nesciunt laudantium et sapiente? Dolorem architecto commodi sunt. Magni illo veniam hic incidunt. Dignissimos amet deleniti culpa pariatur itaque! Temporibus ipsum est sunt veritatis amet sequi sapiente corrupti deleniti qui cum non, fuga exercitationem autem corporis esse quod reprehenderit et! Ad soluta ab natus aspernatur voluptates. Tempora libero quidem voluptatem.
-          </p>
+          <h3 className="name">{teacher?.name}</h3>
+          <p className="description">{teacher?.description}</p>
           <Button className="cta" rounded>Ask me a question</Button>
         </div>
       </div>

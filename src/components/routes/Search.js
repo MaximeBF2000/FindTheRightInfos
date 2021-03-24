@@ -12,7 +12,7 @@ function Search() {
         !searchQueryIsEmpty && (
           <div className="sizeContainer">
             <SearchSorter />
-            <SearchResults />
+            <SearchResults searchQuery={searchQuery} />
           </div>
         )
       }

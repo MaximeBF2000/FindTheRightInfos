@@ -1,5 +1,6 @@
 export { default as Button } from "./resuable/Button"
 export { default as Form } from "./resuable/Form"
+export { default as SimplePopup } from "./resuable/SimplePopup"
 export { default as VideoPlayer } from "./resuable/VideoPlayer"
 export { default as CourseItem } from "./resuable/CourseItem"
 

@@ -9,10 +9,11 @@ function SearchSorter() {
 					<span>Sort by</span>
 					<select>
 						<option value="relevance">Relevance</option>
-						<option value="relevance">Latest</option>
-						<option value="relevance">Oldest</option>
-						<option value="relevance">Cheapest</option>
-						<option value="relevance">Most expensive</option>
+						<option value="bestreviewed">Best reviewed</option>
+						<option value="latest">Latest</option>
+						<option value="oldest">Oldest</option>
+						<option value="cheapest">Cheapest</option>
+						<option value="mostexpensive">Most expensive</option>
 					</select>
 				</div>
 			</div>

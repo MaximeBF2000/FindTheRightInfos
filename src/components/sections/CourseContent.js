@@ -2,7 +2,9 @@ import React, { useState } from "react"
 import { VideoPlayer } from "../index"
 import goBackIcon from "../../assets/arrow_icon.svg"
 import trophyIcon from "../../assets/trophy_icon.svg"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { secondsToFormattedTime } from "../../utils/functions"
 
 
 const VideoModule = ({ title, videos, open = false }) => {
@@ -15,7 +17,7 @@ const VideoModule = ({ title, videos, open = false }) => {
         {videos?.map((video, i) => (
           <li className="video" key={i}>
             <div className="video__title">{video?.title}</div>
-            <div className="video__duration">{video?.duration}</div>
+            <div className="video__duration">{secondsToFormattedTime(video?.duration)}</div>
           </li>
         ))}
       </ul>
@@ -25,6 +27,13 @@ const VideoModule = ({ title, videos, open = false }) => {
 
 function CourseContent() {
   const history = useHistory()
+  const { courseId } = useParams()
+  const course = useSelector(state => state.courses).find(course => course?.id === courseId)
+  const modules = useSelector(state => state.modules).filter(_module => _module?.courseId === course?.id)
+  const videos = useSelector(state => state.videos).filter(video => video?.courseId === course?.id)
+  const teacher = useSelector(state => state.teachers).find(teacher => teacher?.id === course?.teacherId)
+
+  console.log({teacher, course})
 
   const goBack = () => history.goBack()
 
@@ -50,47 +59,24 @@ function CourseContent() {
 				</div>
 			</div>
 			<div className="videoContainer">
-				<VideoPlayer className="videoPlayer" url="https://youtu.be/BVEQh4QRpxU" />
+				<VideoPlayer className="videoPlayer" url={videos[0] ? videos[0]?.url : "https://www.youtube.com/watch?v=BVEQh4QRpxU&ab_channel=ActiveGrowth"} />
 				<aside className="videoAside">
 					<div className="header">
-						<h2 className="course__title">Course Title</h2>
-						<small className="courseAuthor">by Author name</small>
+						<h2 className="course__title">{course?.title}</h2>
+						<small className="courseAuthor">by {teacher?.name}</small>
 					</div>
 					<div className="modules">
-						<VideoModule
-							open
-							title="Module 1"
-							videos={[
-								{ title: "Video 1", duration: "2min 27" },
-								{ title: "Video 2", duration: "2min 27" },
-								{ title: "Video 3", duration: "2min 27" },
-							]}
-						/>
-						<VideoModule
-							title="Module 2"
-							videos={[
-								{ title: "Video 1", duration: "2min 27" },
-								{ title: "Video 2", duration: "2min 27" },
-								{ title: "Video 3", duration: "2min 27" },
-							]}
-						/>
-						<VideoModule
-							title="Module 3"
-							videos={[
-								{ title: "Video 1", duration: "2min 27" },
-								{ title: "Video 2", duration: "2min 27" },
-								{ title: "Video 3", duration: "2min 27" },
-							]}
-						/>
-						<VideoModule
-							title="Module 4"
-							npm
-							videos={[
-								{ title: "Video 1", duration: "2min 27" },
-								{ title: "Video 2", duration: "2min 27" },
-								{ title: "Video 3", duration: "2min 27" },
-							]}
-						/>
+            {modules?.map((_module, i) => {
+              const _videos = videos.filter(video => _module?.videos.includes(video?.id))
+              return (
+                <VideoModule
+                  key={i}
+                  open={i === 0}
+                  title={_module?.title}
+                  videos={_videos}
+                />
+              )
+            })}
 					</div>
 				</aside>
 			</div>

@@ -1,5 +1,11 @@
+import dummyData from "../dummyData"
+
 const initialState = {
-  user: null
+  user: null,
+  courses: dummyData.courses,
+  modules: dummyData.modules,
+  videos: dummyData.videos,
+  teachers: dummyData.teachers
 }
 
 const rootReducer = (state = initialState, action) => {
